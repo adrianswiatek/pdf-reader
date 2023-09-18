@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E818401E2AAF6F8700F997B0 /* OutlineView+RowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818401D2AAF6F8700F997B0 /* OutlineView+RowsView.swift */; };
+		E81840202AAF71E900F997B0 /* OutlineView+HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818401F2AAF71E900F997B0 /* OutlineView+HeaderView.swift */; };
+		E81840242AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */; };
+		E81840262AAFB9BA00F997B0 /* ContentView+PdfButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */; };
+		E8292B3E2AB78F1A00AE9C31 /* Outline+Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8292B3D2AB78F1A00AE9C31 /* Outline+Node.swift */; };
+		E85F246A2AAE65560041BF1B /* Outline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85F24692AAE65560041BF1B /* Outline.swift */; };
+		E85F246C2AAE88770041BF1B /* OutlineView+RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85F246B2AAE88770041BF1B /* OutlineView+RowView.swift */; };
+		E8CB3FFB2AAA4A4A000B10BA /* pdf_readerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB3FFA2AAA4A4A000B10BA /* pdf_readerApp.swift */; };
+		E8CB3FFD2AAA4A4A000B10BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */; };
+		E8CB3FFF2AAA4A4B000B10BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8CB3FFE2AAA4A4B000B10BA /* Assets.xcassets */; };
+		E8CB40022AAA4A4B000B10BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8CB40012AAA4A4B000B10BA /* Preview Assets.xcassets */; };
+		E8CB40092AAA5B41000B10BA /* PdfKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB40082AAA5B41000B10BA /* PdfKitView.swift */; };
+		E8CB400E2AAA6648000B10BA /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB400D2AAA6648000B10BA /* OutlineView.swift */; };
+		E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E818401D2AAF6F8700F997B0 /* OutlineView+RowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineView+RowsView.swift"; sourceTree = "<group>"; };
+		E818401F2AAF71E900F997B0 /* OutlineView+HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineView+HeaderView.swift"; sourceTree = "<group>"; };
+		E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PageNumberAlert.swift"; sourceTree = "<group>"; };
+		E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PdfButtons.swift"; sourceTree = "<group>"; };
+		E8292B3D2AB78F1A00AE9C31 /* Outline+Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outline+Node.swift"; sourceTree = "<group>"; };
+		E85F24692AAE65560041BF1B /* Outline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outline.swift; sourceTree = "<group>"; };
+		E85F246B2AAE88770041BF1B /* OutlineView+RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineView+RowView.swift"; sourceTree = "<group>"; };
+		E8CB3FF72AAA4A4A000B10BA /* pdf-reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pdf-reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8CB3FFA2AAA4A4A000B10BA /* pdf_readerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdf_readerApp.swift; sourceTree = "<group>"; };
+		E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E8CB3FFE2AAA4A4B000B10BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8CB40012AAA4A4B000B10BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E8CB40082AAA5B41000B10BA /* PdfKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfKitView.swift; sourceTree = "<group>"; };
+		E8CB400D2AAA6648000B10BA /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
+		E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PdfButton.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8CB3FF42AAA4A4A000B10BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E81840212AAF723300F997B0 /* Outline */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB400D2AAA6648000B10BA /* OutlineView.swift */,
+				E818401F2AAF71E900F997B0 /* OutlineView+HeaderView.swift */,
+				E818401D2AAF6F8700F997B0 /* OutlineView+RowsView.swift */,
+				E85F246B2AAE88770041BF1B /* OutlineView+RowView.swift */,
+			);
+			path = Outline;
+			sourceTree = "<group>";
+		};
+		E81840222AAF8E2000F997B0 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */,
+				E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */,
+				E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */,
+				E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		E85F24682AAE654D0041BF1B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E85F24692AAE65560041BF1B /* Outline.swift */,
+				E8292B3D2AB78F1A00AE9C31 /* Outline+Node.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E8CB3FEE2AAA4A4A000B10BA = {
+			isa = PBXGroup;
+			children = (
+				E8CB3FF92AAA4A4A000B10BA /* pdf-reader */,
+				E8CB3FF82AAA4A4A000B10BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E8CB3FF82AAA4A4A000B10BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB3FF72AAA4A4A000B10BA /* pdf-reader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8CB3FF92AAA4A4A000B10BA /* pdf-reader */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB3FFA2AAA4A4A000B10BA /* pdf_readerApp.swift */,
+				E8CB3FFE2AAA4A4B000B10BA /* Assets.xcassets */,
+				E85F24682AAE654D0041BF1B /* Model */,
+				E8CB40002AAA4A4B000B10BA /* Preview Content */,
+				E8CB400C2AAA663E000B10BA /* Views */,
+			);
+			path = "pdf-reader";
+			sourceTree = "<group>";
+		};
+		E8CB40002AAA4A4B000B10BA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB40012AAA4A4B000B10BA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E8CB400C2AAA663E000B10BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB40082AAA5B41000B10BA /* PdfKitView.swift */,
+				E81840222AAF8E2000F997B0 /* Content */,
+				E81840212AAF723300F997B0 /* Outline */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8CB3FF62AAA4A4A000B10BA /* pdf-reader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8CB40052AAA4A4B000B10BA /* Build configuration list for PBXNativeTarget "pdf-reader" */;
+			buildPhases = (
+				E8CB3FF32AAA4A4A000B10BA /* Sources */,
+				E8CB3FF42AAA4A4A000B10BA /* Frameworks */,
+				E8CB3FF52AAA4A4A000B10BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "pdf-reader";
+			productName = "pdf-reader";
+			productReference = E8CB3FF72AAA4A4A000B10BA /* pdf-reader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8CB3FEF2AAA4A4A000B10BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					E8CB3FF62AAA4A4A000B10BA = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = E8CB3FF22AAA4A4A000B10BA /* Build configuration list for PBXProject "pdf-reader" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E8CB3FEE2AAA4A4A000B10BA;
+			productRefGroup = E8CB3FF82AAA4A4A000B10BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8CB3FF62AAA4A4A000B10BA /* pdf-reader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8CB3FF52AAA4A4A000B10BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8CB40022AAA4A4B000B10BA /* Preview Assets.xcassets in Resources */,
+				E8CB3FFF2AAA4A4B000B10BA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8CB3FF32AAA4A4A000B10BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8CB3FFD2AAA4A4A000B10BA /* ContentView.swift in Sources */,
+				E81840242AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift in Sources */,
+				E818401E2AAF6F8700F997B0 /* OutlineView+RowsView.swift in Sources */,
+				E81840262AAFB9BA00F997B0 /* ContentView+PdfButtons.swift in Sources */,
+				E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */,
+				E85F246A2AAE65560041BF1B /* Outline.swift in Sources */,
+				E8CB40092AAA5B41000B10BA /* PdfKitView.swift in Sources */,
+				E85F246C2AAE88770041BF1B /* OutlineView+RowView.swift in Sources */,
+				E8CB3FFB2AAA4A4A000B10BA /* pdf_readerApp.swift in Sources */,
+				E8CB400E2AAA6648000B10BA /* OutlineView.swift in Sources */,
+				E8292B3E2AB78F1A00AE9C31 /* Outline+Node.swift in Sources */,
+				E81840202AAF71E900F997B0 /* OutlineView+HeaderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E8CB40032AAA4A4B000B10BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E8CB40042AAA4A4B000B10BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8CB40062AAA4A4B000B10BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"pdf-reader/Preview Content\"";
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pl.aswiatek.pdf-reader";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E8CB40072AAA4A4B000B10BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"pdf-reader/Preview Content\"";
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pl.aswiatek.pdf-reader";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8CB3FF22AAA4A4A000B10BA /* Build configuration list for PBXProject "pdf-reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8CB40032AAA4A4B000B10BA /* Debug */,
+				E8CB40042AAA4A4B000B10BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8CB40052AAA4A4B000B10BA /* Build configuration list for PBXNativeTarget "pdf-reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8CB40062AAA4A4B000B10BA /* Debug */,
+				E8CB40072AAA4A4B000B10BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8CB3FEF2AAA4A4A000B10BA /* Project object */;
+}
