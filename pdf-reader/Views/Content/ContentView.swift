@@ -50,6 +50,7 @@ struct ContentView: View {
             if canShowPdfContent {
                 pdfKitView
                     .ignoresSafeArea()
+                    .opacity(isOutlineShown ? 0 : 1)
 
                 statusBarBackground
                     .ignoresSafeArea()

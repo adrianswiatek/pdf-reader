@@ -8,36 +8,80 @@ extension OutlineView {
         @Binding
         private var isShown: Bool
 
-        init(_ isShown: Binding<Bool>) {
+        @Binding
+        private var searchTerm: String
+
+        @State
+        private var isSearching: Bool
+
+        @FocusState
+        private var isSearchFieldFocused: Bool
+
+        init(isOutlineShown isShown: Binding<Bool>, searchTerm: Binding<String>) {
             self._isShown = isShown
+            self._isSearching = State(wrappedValue: false)
+            self._searchTerm = searchTerm
         }
 
         var body: some View {
-            HStack {
-                Text("Outline")
-                    .textCase(.uppercase)
-                    .foregroundStyle(
-                        Color(uiColor: colorScheme == .light ? .darkText : .lightText)
-                    )
-                    .font(.system(size: 32, weight: .bold))
-                    .padding(.leading, 24)
-
-                Spacer()
-
-                Button {
-                    withAnimation {
-                        isShown.toggle()
+            GeometryReader { proxy in
+                HStack(spacing: 8) {
+                    Button {
+                        withAnimation {
+                            isSearching.toggle()
+                            isSearchFieldFocused = isSearching
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 20, weight: .bold))
+                            .tint(isSearching ? Color(uiColor: .secondarySystemFill) : .accentColor)
+                            .padding()
                     }
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 20, weight: .bold))
-                        .tint(.accentColor)
-                        .padding()
+                    .padding(.leading, 8)
+
+                    if isSearching {
+                        HStack {
+                            TextField("Search in contents", text: $searchTerm)
+                                .focused($isSearchFieldFocused)
+
+                            Button {
+                                searchTerm = ""
+                            } label: {
+                                Image(systemName: "xmark.circle")
+                            }
+                            .disabled(searchTerm == "")
+                        }
+                        .padding(8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(.background.opacity(0.75))
+                        )
+                        .frame(maxWidth: proxy.size.width / 3)
+                        .transition(.opacity)
+                    }
+
+                    Spacer()
+
+                    Button {
+                        withAnimation {
+                            isShown = false
+                        }
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 20, weight: .bold))
+                            .tint(.accentColor)
+                            .padding()
+                    }
+                    .padding(.trailing, 16)
                 }
-                .padding(.trailing, 16)
+                .padding(.bottom)
+                .background(Color(uiColor: .secondarySystemBackground))
             }
-            .padding(.vertical)
-            .background(Color(uiColor: .secondarySystemBackground))
+            .onChange(of: isShown) { _ in
+                searchTerm = ""
+                isSearching = false
+                isSearchFieldFocused = false
+            }
         }
     }
 }

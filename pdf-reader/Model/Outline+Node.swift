@@ -4,29 +4,41 @@ import PDFKit
 extension Outline {
     struct Node: Hashable, Identifiable {
         let id: UUID
-        let label: String
+        let label: Label
         let pageNumber: String
         let pdfDestination: PDFDestination?
         let childs: [Node]
-    }
-}
 
-extension Outline.Node {
-    static func nodeFromOutline(_ pdfOutline: PDFOutline) -> Outline.Node {
-        Outline.Node(
-            id: UUID(),
-            label: pdfOutline.label ?? "",
-            pageNumber: pdfOutline.destination?.page?.label ?? "",
-            pdfDestination: pdfOutline.destination,
-            childs: .nodesFromOutline(pdfOutline)
-        )
-    }
-}
+        init(
+            _ id: UUID,
+            _ label: Label,
+            _ pageNumber: String,
+            _ pdfDestination: PDFDestination?,
+            _ childs: [Node]
+        ) {
+            self.id = id
+            self.label = label
+            self.pageNumber = pageNumber
+            self.pdfDestination = pdfDestination
+            self.childs = childs
+        }
 
-extension Array where Element == Outline.Node {
-    static func nodesFromOutline(_ pdfOutline: PDFOutline) -> [Outline.Node] {
-        (0 ..< pdfOutline.numberOfChildren)
-            .compactMap(pdfOutline.child)
-            .map(Outline.Node.nodeFromOutline)
+        static func fromPdfOutline(_ pdfOutline: PDFOutline) -> Node {
+            let id = UUID()
+            let label = Label.fromString(pdfOutline.label ?? "")
+            let pageNumber = pdfOutline.destination?.page?.label ?? ""
+            let pdfDestination = pdfOutline.destination
+            return Node(id, label, pageNumber, pdfDestination, .nodesFromOutline(pdfOutline))
+        }
+
+        func withChilds(_ childs: [Node]) -> Node {
+            Node(id, label, pageNumber, pdfDestination, childs)
+        }
+
+        func withUnderlinedLabel(_ text: String) -> Node {
+            Node(id, label.withUnderlined(text), pageNumber, pdfDestination, childs.map {
+                $0.withUnderlinedLabel(text)
+            })
+        }
     }
 }

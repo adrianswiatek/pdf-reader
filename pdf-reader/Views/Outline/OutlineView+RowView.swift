@@ -14,11 +14,22 @@ extension OutlineView {
         }
 
         var body: some View {
-            HStack {
-                Text(node.label)
+            HStack(spacing: 0) {
+                Text(node.label.underlinedText().preunderlined)
                     .font(.system(size: 18 - level * 1.5))
                     .fontWeight(fontWeightForLevel(Int(level)))
+
+                Text(node.label.underlinedText().underlined)
+                    .font(.system(size: 18 - level * 1.5))
+                    .fontWeight(fontWeightForLevel(Int(level)))
+                    .background(Color.secondary)
+
+                Text(node.label.underlinedText().postunderlined)
+                    .font(.system(size: 18 - level * 1.5))
+                    .fontWeight(fontWeightForLevel(Int(level)))
+
                 Spacer()
+
                 Text(node.pageNumber)
                     .font(.system(size: 14))
                     .fontWeight(.light)

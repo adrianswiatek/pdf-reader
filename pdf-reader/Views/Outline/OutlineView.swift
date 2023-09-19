@@ -7,6 +7,9 @@ struct OutlineView: View {
     @State
     private var selectedNode: Outline.Node?
 
+    @State
+    private var searchTerm: String
+
     private let outline: Outline
     private let onPageSelected: (PdfKitView.Destination) -> Void
 
@@ -18,15 +21,16 @@ struct OutlineView: View {
         self._isShown = isShown
         self.outline = outline
         self.onPageSelected = onPageSelected
+        self._searchTerm = State(wrappedValue: "")
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView($isShown)
+            HeaderView(isOutlineShown: $isShown, searchTerm: $searchTerm)
                 .frame(height: 56)
 
             List(selection: $selectedNode) {
-                RowsView(outline.nodes)
+                RowsView(nodes)
                     .listRowBackground(Color(uiColor: .systemBackground))
             }
             .listStyle(.automatic)
@@ -40,6 +44,12 @@ struct OutlineView: View {
             if let page = selectedNode?.pdfDestination?.page {
                 onPageSelected(.page(page))
             }
+        }
+    }
+
+    private var nodes: [Outline.Node] {
+        outline.searched(searchTerm).nodes.map {
+            $0.withUnderlinedLabel(searchTerm)
         }
     }
 }

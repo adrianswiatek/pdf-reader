@@ -23,8 +23,7 @@ extension ContentView {
             Button(action: action) {
                 Image(systemName: imageSystemName)
                     .font(font)
-                    .tint(.accentColor)
-                    .opacity(isActive ? 0.5 : 1)
+                    .tint(isActive ? Color(uiColor: .secondarySystemFill) : .accentColor)
                     .frame(width: 44, height: 44)
             }
         }
