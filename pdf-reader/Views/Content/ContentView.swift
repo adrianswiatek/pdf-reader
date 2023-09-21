@@ -45,6 +45,10 @@ struct ContentView: View {
         !isPageNumberAlertShown && !isOutlineShown
     }
 
+    private var canShowOutlineButton: Bool {
+        pdfKitView.outline.isEmpty == false && arePdfButtonsShown
+    }
+
     var body: some View {
         ZStack {
             if canShowPdfContent {
@@ -60,10 +64,28 @@ struct ContentView: View {
                 }
 
                 if canShowButtons {
+                    VStack(spacing: 16) {
+                        if canShowOutlineButton {
+                            PdfButton(imageSystemName: "list.number", isActive: isOutlineShown) {
+                                withAnimation {
+                                    isOutlineShown.toggle()
+                                    arePdfButtonsShown.toggle()
+                                }
+                            }
+                        }
+
+                        PdfButton(imageSystemName: "ellipsis.rectangle", isActive: arePdfButtonsShown) {
+                            withAnimation {
+                                arePdfButtonsShown.toggle()
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                    .padding(.trailing, 24)
+                    .padding(.bottom, 8)
+
                     pdfButtonsView
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 }
             } else {
                 VStack(spacing: 24) {

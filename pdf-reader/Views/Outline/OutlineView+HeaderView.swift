@@ -30,11 +30,12 @@ extension OutlineView {
                         withAnimation {
                             isSearching.toggle()
                             isSearchFieldFocused = isSearching
+                            searchTerm = ""
                         }
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .font(.system(size: 20, weight: .bold))
-                            .tint(isSearching ? Color(uiColor: .secondarySystemFill) : .accentColor)
+                            .tint(isSearching ? .red : .accentColor)
                             .padding()
                     }
                     .padding(.leading, 8)

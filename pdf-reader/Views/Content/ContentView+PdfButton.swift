@@ -23,8 +23,13 @@ extension ContentView {
             Button(action: action) {
                 Image(systemName: imageSystemName)
                     .font(font)
-                    .tint(isActive ? Color(uiColor: .secondarySystemFill) : .accentColor)
-                    .frame(width: 44, height: 44)
+                    .fontWeight(.medium)
+                    .tint(isActive ? .red : .accentColor)
+                    .frame(width: 40, height: 40)
+                    .padding(4)
+                    .background(RoundedRectangle(cornerRadius: 60)
+                        .fill(.white.opacity(0.66))
+                        .shadow(color: .blue.opacity(0.33), radius: 0.5, y: 0.5))
             }
         }
     }

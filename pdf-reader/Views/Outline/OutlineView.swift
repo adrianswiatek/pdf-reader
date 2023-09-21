@@ -29,19 +29,19 @@ struct OutlineView: View {
             HeaderView(isOutlineShown: $isShown, searchTerm: $searchTerm)
                 .frame(height: 56)
 
-            List(selection: $selectedNode) {
-                RowsView(nodes)
+            List {
+                RowsView(nodes, selectedNode: $selectedNode)
                     .listRowBackground(Color(uiColor: .systemBackground))
             }
             .listStyle(.automatic)
         }
         .opacity(isShown ? 1 : 0)
-        .onChange(of: selectedNode) { _ in
+        .onChange(of: selectedNode) {
             withAnimation {
                 isShown = false
             }
 
-            if let page = selectedNode?.pdfDestination?.page {
+            if let page = $0?.pdfDestination?.page {
                 onPageSelected(.page(page))
             }
         }

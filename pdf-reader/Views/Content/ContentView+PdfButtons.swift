@@ -23,12 +23,8 @@ extension ContentView {
             self._areButtonsShown = areButtonsShown
         }
 
-        private var canShowOutlineButton: Bool {
-            pdfKitView.outline.isEmpty == false
-        }
-
         var body: some View {
-            Grid(horizontalSpacing: 24) {
+            Grid(alignment: .leading, horizontalSpacing: 24) {
                 GridRow {
                     if areButtonsShown {
                         PdfButton(imageSystemName: "doc") {
@@ -55,28 +51,10 @@ extension ContentView {
                         PdfButton(imageSystemName: "number") {
                             isPageNumberAlertShown.toggle()
                         }
-
-                        if canShowOutlineButton {
-                            PdfButton(imageSystemName: "list.number", isActive: isOutlineShown) {
-                                withAnimation {
-                                    isOutlineShown.toggle()
-                                    areButtonsShown.toggle()
-                                }
-                            }
-                        }
-                    }
-
-                    PdfButton(imageSystemName: "gear", isActive: areButtonsShown) {
-                        withAnimation {
-                            areButtonsShown.toggle()
-                        }
                     }
                 }
             }
-            .padding(4)
-            .background(RoundedRectangle(cornerRadius: 60)
-                .fill(.white.opacity(0.75 ))
-                .shadow(color: Color(uiColor: .lightGray).opacity(0.75), radius: 0.5, y: 0.5))
+            .padding(8)
         }
     }
 }

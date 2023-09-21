@@ -50,6 +50,10 @@ struct PdfKitView: UIViewRepresentable {
             url.stopAccessingSecurityScopedResource()
         }
     }
+
+    func closeDocument() {
+        pdfView.document = nil
+    }
 }
 
 extension PdfKitView {
@@ -64,7 +68,5 @@ extension PdfKitView {
 }
 
 final class PdfKitViewDelegate: NSObject, PDFViewDelegate {
-    func pdfViewPerformGo(toPage page: PDFView) {
-        print("@$", Date(), self, #function, page.currentPage?.label ?? "[n/a]")
-    }
+    
 }
