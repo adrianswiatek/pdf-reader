@@ -4,8 +4,8 @@ struct ContentView: View {
     @State private var isOutlineShown = false
     @State private var isPageNumberAlertShown = false
     @State private var isFilePickerShown = false
-    @State private var arePdfButtonsShown = false
-
+    @State private var areControlsShown = false
+    @State private var pageNumberMode = PageNumber.Mode.pageLabel
     @State private var pdfKitView = PdfKitView()
 
     private var outlineView: OutlineView {
@@ -22,7 +22,7 @@ struct ContentView: View {
             isOutlineShown: $isOutlineShown,
             isPageNumberAlertShown: $isPageNumberAlertShown,
             isFilePickerShown: $isFilePickerShown,
-            areButtonsShown: $arePdfButtonsShown
+            areButtonsShown: $areControlsShown
         )
     }
 
@@ -46,7 +46,7 @@ struct ContentView: View {
     }
 
     private var canShowOutlineButton: Bool {
-        pdfKitView.outline.isEmpty == false && arePdfButtonsShown
+        pdfKitView.outline.isEmpty == false && areControlsShown
     }
 
     var body: some View {
@@ -69,14 +69,14 @@ struct ContentView: View {
                             PdfButton(imageSystemName: "list.number", isActive: isOutlineShown) {
                                 withAnimation {
                                     isOutlineShown.toggle()
-                                    arePdfButtonsShown.toggle()
+                                    areControlsShown.toggle()
                                 }
                             }
                         }
 
-                        PdfButton(imageSystemName: "ellipsis.rectangle", isActive: arePdfButtonsShown) {
+                        PdfButton(imageSystemName: "ellipsis.rectangle", isActive: areControlsShown) {
                             withAnimation {
-                                arePdfButtonsShown.toggle()
+                                areControlsShown.toggle()
                             }
                         }
                     }
@@ -86,7 +86,14 @@ struct ContentView: View {
 
                     pdfButtonsView
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+
+                    if areControlsShown {
+                        PageNumber(mode: $pageNumberMode)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                            .padding()
+                    }
                 }
+
             } else {
                 VStack(spacing: 24) {
                     Text("No PDF document opened")
@@ -105,7 +112,7 @@ struct ContentView: View {
         .alert("Go to page", isPresented: $isPageNumberAlertShown) {
             PageNumberAlertView {
                 pdfKitView.goTo($0)
-                arePdfButtonsShown.toggle()
+                areControlsShown.toggle()
             }
         }
     }

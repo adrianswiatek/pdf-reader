@@ -1,3 +1,4 @@
+import Combine
 import PDFKit
 import SwiftUI
 
@@ -13,16 +14,11 @@ struct PdfKitView: UIViewRepresentable {
     private let pdfView = PDFView()
 
     func makeUIView(context: Context) -> PDFView {
-        pdfView.delegate = context.coordinator
-        return pdfView
+        pdfView
     }
 
     func updateUIView(_ pdfView: PDFView, context: Context) {
         // No need to update
-    }
-
-    func makeCoordinator() -> PdfKitViewDelegate {
-        PdfKitViewDelegate()
     }
 
     func goTo(_ destination: Destination) {
@@ -54,19 +50,4 @@ struct PdfKitView: UIViewRepresentable {
     func closeDocument() {
         pdfView.document = nil
     }
-}
-
-extension PdfKitView {
-    enum Destination {
-        case firstPage
-        case index(Int)
-        case lastPage
-        case nextPage
-        case page(PDFPage)
-        case previousPage
-    }
-}
-
-final class PdfKitViewDelegate: NSObject, PDFViewDelegate {
-    
 }
