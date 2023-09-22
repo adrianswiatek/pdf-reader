@@ -5,7 +5,6 @@ struct ContentView: View {
     @State private var isPageNumberAlertShown = false
     @State private var isFilePickerShown = false
     @State private var areControlsShown = false
-    @State private var pageNumberMode = PageNumber.Mode.pageLabel
     @State private var pdfKitView = PdfKitView()
 
     private var outlineView: OutlineView {
@@ -88,7 +87,7 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
 
                     if areControlsShown {
-                        PageNumber(mode: $pageNumberMode)
+                        PageNumber()
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             .padding()
                     }

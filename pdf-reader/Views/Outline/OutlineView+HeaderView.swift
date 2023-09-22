@@ -35,7 +35,7 @@ extension OutlineView {
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .font(.system(size: 20, weight: .bold))
-                            .tint(isSearching ? .red : .accentColor)
+                            .tint(isSearching ? .activeColor : .accentColor)
                             .padding()
                     }
                     .padding(.leading, 8)

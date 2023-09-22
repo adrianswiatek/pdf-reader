@@ -24,7 +24,7 @@ extension ContentView {
                 Image(systemName: imageSystemName)
                     .font(font)
                     .fontWeight(.medium)
-                    .tint(isActive ? .red : .accentColor)
+                    .tint(isActive ? .activeColor : .accentColor)
                     .frame(width: 40, height: 40)
                     .padding(4)
                     .background(RoundedRectangle(cornerRadius: 60)
