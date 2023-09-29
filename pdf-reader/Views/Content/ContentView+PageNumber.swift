@@ -2,28 +2,33 @@ import SwiftUI
 
 extension ContentView {
     struct PageNumber: View {
-        @EnvironmentObject
-        private var currentPageListener: CurrentPageListener
+        @Environment(PageListener.self)
+        private var pageListener: PageListener
 
-        private var canShowPageNumberWithPageLabel: Bool {
-            if currentPageListener.hasPageLabel {
-                return currentPageListener.pageNumber != currentPageListener.pageLabel
-            }
-            return false
+        private var page: Page? {
+            pageListener.currentPage
+        }
+
+        private var canShowPageNumber: Bool {
+            page?.hasPageNumber == true
+        }
+
+        private var canShowPageLabel: Bool {
+            page?.hasPageLabel == true && page?.arePropertiesTheSame == false
         }
 
         var body: some View {
-            if currentPageListener.hasPageNumber {
+            if canShowPageNumber {
                 HStack(spacing: 2) {
-                    if canShowPageNumberWithPageLabel {
-                        Text(currentPageListener.pageNumber ?? "")
+                    if canShowPageLabel {
+                        Text(page?.pageNumber ?? "")
                             .fontWeight(.thin)
                         Text(" | ")
                             .fontWeight(.thin)
-                        Text(currentPageListener.pageLabel ?? "")
+                        Text(page?.pageLabel ?? "")
                             .fontWeight(.medium)
                     } else {
-                        Text(currentPageListener.pageNumber ?? "")
+                        Text(page?.pageNumber ?? "")
                             .fontWeight(.medium)
                     }
                 }

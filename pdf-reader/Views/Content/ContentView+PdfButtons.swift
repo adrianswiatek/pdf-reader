@@ -2,6 +2,8 @@ import SwiftUI
 
 extension ContentView {
     struct PdfButtonsView: View {
+        @Environment(PageListener.self) private var pageListener: PageListener
+
         @Binding private var isPageNumberAlertShown: Bool
         @Binding private var isOutlineShown: Bool
         @Binding private var isFilePickerShown: Bool
@@ -30,6 +32,12 @@ extension ContentView {
                         PdfButton(imageSystemName: "doc") {
                             isFilePickerShown.toggle()
                             areButtonsShown.toggle()
+                        }
+
+                        PdfButton(imageSystemName: "arrow.uturn.backward", isDisabled: !pageListener.hasPreviousPage) {
+                            if let previousPage = pageListener.previousPage() {
+                                pdfKitView.goTo(.page(previousPage.asPdfPage))
+                            }
                         }
 
                         PdfButton(imageSystemName: "arrow.left.to.line", size: .small) {
