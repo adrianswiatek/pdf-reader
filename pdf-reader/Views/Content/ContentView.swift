@@ -94,12 +94,13 @@ struct ContentView: View {
                 }
 
             } else {
-                VStack(spacing: 24) {
+                ContentUnavailableView {
                     Text("No PDF document opened")
-                        .foregroundColor(.secondary)
-                    Button("Select document") {
+                } actions: {
+                    Button("Select a document") {
                         isFilePickerShown.toggle()
                     }
+                    .padding()
                 }
             }
         }
