@@ -29,19 +29,24 @@ struct OutlineView: View {
             HeaderView(isOutlineShown: $isShown, searchTerm: $searchTerm)
                 .frame(height: 56)
 
-            List {
-                RowsView(nodes, selectedNode: $selectedNode)
-                    .listRowBackground(Color(uiColor: .systemBackground))
+            if !nodes.isEmpty {
+                List {
+                    RowsView(nodes, selectedNode: $selectedNode)
+                        .listRowBackground(Color(uiColor: .systemBackground))
+                }
+                .listStyle(.automatic)
+            } else {
+                ContentUnavailableView.search
+                    .background(Color(uiColor: .systemGroupedBackground))
             }
-            .listStyle(.automatic)
         }
         .opacity(isShown ? 1 : 0)
-        .onChange(of: selectedNode) {
+        .onChange(of: selectedNode) { _, node in
             withAnimation {
                 isShown = false
             }
 
-            if let page = $0?.pdfDestination?.page {
+            if let page = node?.pdfDestination?.page {
                 onPageSelected(.page(page))
             }
         }

@@ -21,14 +21,14 @@ extension ContentView {
             if canShowPageNumber {
                 HStack(spacing: 2) {
                     if canShowPageLabel {
-                        Text(page?.pageNumber ?? "")
+                        Text(page?.formattedPageNumber ?? "")
                             .fontWeight(.thin)
                         Text(" | ")
                             .fontWeight(.thin)
                         Text(page?.pageLabel ?? "")
                             .fontWeight(.medium)
                     } else {
-                        Text(page?.pageNumber ?? "")
+                        Text(page?.formattedPageNumber ?? "")
                             .fontWeight(.medium)
                     }
                 }

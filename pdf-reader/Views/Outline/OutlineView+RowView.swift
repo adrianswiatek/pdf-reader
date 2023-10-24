@@ -2,6 +2,9 @@ import SwiftUI
 
 extension OutlineView {
     struct RowView: View {
+        @Environment(PageListener.self)
+        private var pageListener: PageListener
+
         @Environment(\.colorScheme)
         private var colorScheme: ColorScheme
 

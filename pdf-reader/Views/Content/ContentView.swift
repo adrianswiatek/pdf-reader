@@ -1,6 +1,16 @@
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(PageListener.self) 
+    private var pageListener: PageListener
+
+    @Environment(BookProgressStore.self)
+    private var bookProgressStore: BookProgressStore
+
+    @Environment(\.modelContext) 
+    private var modelContext: ModelContext
+
     @State private var isOutlineShown = false
     @State private var isPageNumberAlertShown = false
     @State private var isFilePickerShown = false
@@ -15,14 +25,31 @@ struct ContentView: View {
         )
     }
 
-    private var pdfButtonsView: PdfButtonsView {
+    private var pdfNavigationButtonsView: PdfButtonsView {
         PdfButtonsView(
             pdfKitView: pdfKitView,
             isOutlineShown: $isOutlineShown,
             isPageNumberAlertShown: $isPageNumberAlertShown,
-            isFilePickerShown: $isFilePickerShown,
             areButtonsShown: $areControlsShown
         )
+    }
+
+    private var closeAndSwitchButtonsView: some View {
+        VStack(spacing: 16) {
+            PdfButton(imageSystemName: "xmark") {
+                withAnimation {
+                    pdfKitView.closeDocument()
+                    areControlsShown.toggle()
+                    pageListener.clearState()
+                }
+            }
+
+            PdfButton(imageSystemName: "arrow.triangle.2.circlepath") {
+                isFilePickerShown.toggle()
+                areControlsShown.toggle()
+                pageListener.clearState()
+            }
+        }
     }
 
     private var statusBarBackground: some View {
@@ -80,28 +107,39 @@ struct ContentView: View {
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-                    .padding(.trailing, 24)
-                    .padding(.bottom, 8)
-
-                    pdfButtonsView
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 8)
 
                     if areControlsShown {
                         PageNumber()
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             .padding()
+
+                        closeAndSwitchButtonsView
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                            .padding()
+
+                        pdfNavigationButtonsView
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     }
                 }
-
             } else {
                 ContentUnavailableView {
+                    Image(systemName: "book.closed.circle.fill")
+                        .font(.system(size: 72))
+                        .symbolEffect(.scale)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.orange)
                     Text("No PDF document opened")
                 } actions: {
                     Button("Select a document") {
                         isFilePickerShown.toggle()
                     }
+                    .font(.title2)
+                    .buttonStyle(.borderless)
                     .padding()
                 }
+                .background(Color(uiColor: .systemBackground).gradient)
             }
         }
         .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) { result in
@@ -114,6 +152,10 @@ struct ContentView: View {
                 pdfKitView.goTo($0)
                 areControlsShown.toggle()
             }
+        }
+        .onAppear {
+            bookProgressStore.modelContext = modelContext
+            pdfKitView.bookProgressStore = bookProgressStore
         }
     }
 }

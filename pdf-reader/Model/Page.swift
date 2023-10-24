@@ -11,8 +11,12 @@ struct Page: Equatable {
         pdfPage.label
     }
 
-    var pageNumber: String? {
-        pdfPage.pageRef.map(\.pageNumber).map(String.init)
+    var pageNumber: Int? {
+        pdfPage.pageRef?.pageNumber
+    }
+
+    var formattedPageNumber: String? {
+        pageNumber.map(String.init)
     }
 
     var hasPageLabel: Bool {
@@ -20,11 +24,11 @@ struct Page: Equatable {
     }
 
     var hasPageNumber: Bool {
-        pageNumber?.isEmpty == false
+        formattedPageNumber?.isEmpty == false
     }
 
     var arePropertiesTheSame: Bool {
-        pageLabel == pageNumber
+        pageLabel == formattedPageNumber
     }
 
     var asPdfPage: PDFPage {

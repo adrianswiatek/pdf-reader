@@ -3,10 +3,16 @@ import PDFKit
 
 @Observable
 final class PageListener {
-    private (set) var currentPage: Page?
+    var currentPagePublisher: AnyPublisher<Page?, Never> {
+        currentPageSubject.eraseToAnyPublisher()
+    }
+
+    private let currentPageSubject: CurrentValueSubject<Page?, Never>
+
+    var currentPage: Page?
 
     var hasCurrentPage: Bool {
-        currentPage != nil
+        currentPageSubject.value != nil
     }
 
     var hasPreviousPage: Bool {
@@ -21,6 +27,7 @@ final class PageListener {
 
     init(notificationCenter: NotificationCenter) {
         self.notificationCenter = notificationCenter
+        self.currentPageSubject = .init(nil)
         self.previousPages = []
         self.cancellables = []
         self.bind()
@@ -30,12 +37,22 @@ final class PageListener {
         previousPages.last
     }
 
+    func clearState() {
+        currentDocument = nil
+        currentPageSubject.send(nil)
+        previousPages.removeAll()
+    }
+
     private func bind() {
         notificationCenter
             .publisher(for: .PDFViewPageChanged)
             .compactMap { ($0.object as? PDFView).flatMap(\.currentPage) }
             .removeDuplicates()
             .sink { [weak self] in self?.onPageUpdated($0) }
+            .store(in: &cancellables)
+
+        currentPagePublisher
+            .sink { [weak self] in self?.currentPage = $0 }
             .store(in: &cancellables)
     }
 
@@ -50,11 +67,11 @@ final class PageListener {
             previousPages.removeAll(keepingCapacity: true)
         }
 
-        currentPage = incomingPage
+        currentPageSubject.send(incomingPage)
     }
 
     private func appendCurrentPageToHistoryIfNeeded(_ incomingPage: Page) {
-        if incomingPage != previousPage(), let currentPage {
+        if incomingPage != previousPage(), let currentPage = currentPageSubject.value {
             previousPages.append(currentPage)
         }
     }

@@ -2,8 +2,7 @@ import SwiftUI
 
 extension OutlineView {
     struct RowsView: View {
-        @Binding
-        private var selectedNode: Outline.Node?
+        @Binding private var selectedNode: Outline.Node?
 
         private let nodes: [Outline.Node]
         private let level: Int

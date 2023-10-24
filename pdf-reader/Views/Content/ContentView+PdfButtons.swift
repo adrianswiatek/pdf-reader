@@ -6,7 +6,6 @@ extension ContentView {
 
         @Binding private var isPageNumberAlertShown: Bool
         @Binding private var isOutlineShown: Bool
-        @Binding private var isFilePickerShown: Bool
         @Binding private var areButtonsShown: Bool
 
         private let pdfKitView: PdfKitView
@@ -15,13 +14,11 @@ extension ContentView {
             pdfKitView: PdfKitView,
             isOutlineShown: Binding<Bool>,
             isPageNumberAlertShown: Binding<Bool>,
-            isFilePickerShown: Binding<Bool>,
             areButtonsShown: Binding<Bool>
         ) {
             self.pdfKitView = pdfKitView
             self._isOutlineShown = isOutlineShown
             self._isPageNumberAlertShown = isPageNumberAlertShown
-            self._isFilePickerShown = isFilePickerShown
             self._areButtonsShown = areButtonsShown
         }
 
@@ -29,11 +26,6 @@ extension ContentView {
             Grid(alignment: .leading, horizontalSpacing: 24) {
                 GridRow {
                     if areButtonsShown {
-                        PdfButton(imageSystemName: "doc") {
-                            isFilePickerShown.toggle()
-                            areButtonsShown.toggle()
-                        }
-
                         PdfButton(imageSystemName: "arrow.uturn.backward", isDisabled: !pageListener.hasPreviousPage) {
                             if let previousPage = pageListener.previousPage() {
                                 pdfKitView.goTo(.page(previousPage.asPdfPage))

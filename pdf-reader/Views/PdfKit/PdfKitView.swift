@@ -3,6 +3,8 @@ import PDFKit
 import SwiftUI
 
 struct PdfKitView: UIViewRepresentable {
+    var bookProgressStore: BookProgressStore?
+
     var isPdfLoaded: Bool {
         pdfView.document != nil
     }
@@ -43,8 +45,20 @@ struct PdfKitView: UIViewRepresentable {
     func loadDocumentWithUrl(_ url: URL) {
         if url.startAccessingSecurityScopedResource() {
             pdfView.document = PDFDocument(url: url)
+            setBookProgressForUrl(url)
             url.stopAccessingSecurityScopedResource()
         }
+    }
+
+    private func setBookProgressForUrl(_ url: URL) {
+        if let bookProgress = bookProgressStore?.fetchBookProgressForUrl(url) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                goTo(.index(bookProgress.pageIndex))
+            }
+        } else {
+            bookProgressStore?.addBookProgress(BookProgress(withUrl: url))
+        }
+        bookProgressStore?.setAsCurrentBookProgressWithUrl(url)
     }
 
     func closeDocument() {
