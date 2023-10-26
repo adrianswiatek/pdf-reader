@@ -5,14 +5,18 @@ extension Outline {
     struct Node: Hashable, Identifiable {
         let id: UUID
         let label: Label
-        let pageNumber: String
+        let pageNumber: Int?
         let pdfDestination: PDFDestination?
-        let childs: [Node]
+        let children: [Node]
+
+        var formattedPageNumber: String {
+            pageNumber.map(String.init) ?? ""
+        }
 
         init(
             _ id: UUID,
             _ label: Label,
-            _ pageNumber: String,
+            _ pageNumber: Int?,
             _ pdfDestination: PDFDestination?,
             _ childs: [Node]
         ) {
@@ -20,13 +24,13 @@ extension Outline {
             self.label = label
             self.pageNumber = pageNumber
             self.pdfDestination = pdfDestination
-            self.childs = childs
+            self.children = childs
         }
 
         static func fromPdfOutline(_ pdfOutline: PDFOutline) -> Node {
             let id = UUID()
             let label = Label.fromString(pdfOutline.label ?? "")
-            let pageNumber = pdfOutline.destination?.page?.label ?? ""
+            let pageNumber = pdfOutline.destination?.page?.pageRef?.pageNumber
             let pdfDestination = pdfOutline.destination
             return Node(id, label, pageNumber, pdfDestination, .nodesFromOutline(pdfOutline))
         }
@@ -36,7 +40,7 @@ extension Outline {
         }
 
         func withUnderlinedLabel(_ text: String) -> Node {
-            Node(id, label.withUnderlined(text), pageNumber, pdfDestination, childs.map {
+            Node(id, label.withUnderlined(text), pageNumber, pdfDestination, children.map {
                 $0.withUnderlinedLabel(text)
             })
         }

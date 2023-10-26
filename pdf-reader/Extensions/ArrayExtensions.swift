@@ -1,7 +1,7 @@
 import PDFKit
 
 extension Array where Element: Equatable  {
-    var header: Element {
+    var head: Element {
         self[0]
     }
 

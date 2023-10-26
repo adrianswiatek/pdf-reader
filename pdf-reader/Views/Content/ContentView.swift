@@ -19,7 +19,7 @@ struct ContentView: View {
 
     private var outlineView: OutlineView {
         OutlineView(
-            outline: pdfKitView.outline,
+            outline: pdfKitView.outline.withCurrentPage(pageListener.currentPage),
             isShown: $isOutlineShown,
             onPageSelected: pdfKitView.goTo
         )

@@ -13,10 +13,25 @@ extension OutlineView {
 
         private let node: Outline.Node
         private let level: CGFloat
+        private let isCurrent: Bool
 
-        init(_ node: Outline.Node, level: Int, selectedNode: Binding<Outline.Node?>) {
+        private var backgroundColorForText: Color {
+            isCurrent ? .gray.opacity(0.5) : .clear
+        }
+
+        private var backgroundColorForFoundText: Color {
+            .yellow.opacity(0.5)
+        }
+
+        init(
+            node: Outline.Node,
+            level: Int,
+            isCurrent: Bool,
+            selectedNode: Binding<Outline.Node?>
+        ) {
             self.node = node
             self.level = CGFloat(level)
+            self.isCurrent = isCurrent
             self._selectedNode = selectedNode
         }
 
@@ -25,21 +40,24 @@ extension OutlineView {
                 Text(node.label.underlinedText().preunderlined)
                     .font(.system(size: 18 - level * 1.5))
                     .fontWeight(fontWeightForLevel(Int(level)))
+                    .background(backgroundColorForText)
 
                 Text(node.label.underlinedText().underlined)
                     .font(.system(size: 18 - level * 1.5))
                     .fontWeight(fontWeightForLevel(Int(level)))
-                    .background(Color(uiColor: .yellow).opacity(0.5))
+                    .background(backgroundColorForFoundText)
 
                 Text(node.label.underlinedText().postunderlined)
                     .font(.system(size: 18 - level * 1.5))
                     .fontWeight(fontWeightForLevel(Int(level)))
+                    .background(backgroundColorForText)
 
                 Spacer()
 
-                Text(node.pageNumber)
+                Text(node.formattedPageNumber)
                     .font(.system(size: 14))
                     .fontWeight(.light)
+                    .background(backgroundColorForText)
             }
             .foregroundColor(Color(uiColor: colorScheme == .light ? .darkText : .lightText))
             .padding(.leading, level * 20)

@@ -31,7 +31,7 @@ struct OutlineView: View {
 
             if !nodes.isEmpty {
                 List {
-                    RowsView(nodes, selectedNode: $selectedNode)
+                    rowsView
                         .listRowBackground(Color(uiColor: .systemBackground))
                 }
                 .listStyle(.automatic)
@@ -56,5 +56,9 @@ struct OutlineView: View {
         outline.searched(searchTerm).nodes.map {
             $0.withUnderlinedLabel(searchTerm)
         }
+    }
+
+    private var rowsView: RowsView {
+        RowsView(nodes: nodes, currentNode: outline.currentNode, selectedNode: $selectedNode)
     }
 }
