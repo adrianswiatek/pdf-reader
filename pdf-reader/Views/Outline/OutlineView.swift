@@ -30,11 +30,20 @@ struct OutlineView: View {
                 .frame(height: 56)
 
             if !nodes.isEmpty {
-                List {
-                    rowsView
-                        .listRowBackground(Color(uiColor: .systemBackground))
+                ScrollViewReader { proxy in
+                    List {
+                        rowsView
+                            .listRowBackground(Color(uiColor: .systemBackground))
+                    }
+                    .listStyle(.automatic)
+                    .onChange(of: outline.currentNode) { _, currentNode in
+                        if let currentNode {
+                            withAnimation {
+                                proxy.scrollTo(currentNode, anchor: .center)
+                            }
+                        }
+                    }
                 }
-                .listStyle(.automatic)
             } else {
                 ContentUnavailableView.search
                     .background(Color(uiColor: .systemGroupedBackground))
