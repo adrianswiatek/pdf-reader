@@ -25,7 +25,7 @@ extension ContentView {
             self.tintColor = switch (isActive, isDisabled) {
             case (_, true): .gray.opacity(0.5)
             case (true, _): .activeColor
-            default: .accentColor
+            default: .black
             }
         }
 
@@ -33,13 +33,11 @@ extension ContentView {
             Button(action: action) {
                 Image(systemName: imageSystemName)
                     .font(font)
-                    .fontWeight(.medium)
+                    .fontWeight(.light)
                     .tint(tintColor)
                     .frame(width: 40, height: 40)
                     .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 60)
-                        .fill(.white.opacity(0.66).gradient))
-                    .shadow(color: .blue.opacity(0.25), radius: 0.5, y: 0.5)
+                    .background(DefaultBackgroundView())
             }
         }
     }

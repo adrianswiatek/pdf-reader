@@ -17,10 +17,14 @@ extension OutlineView {
         @FocusState
         private var isSearchFieldFocused: Bool
 
+        private let buttonColor: Color
+
         init(isOutlineShown isShown: Binding<Bool>, searchTerm: Binding<String>) {
             self._isShown = isShown
             self._isSearching = State(wrappedValue: false)
             self._searchTerm = searchTerm
+
+            self.buttonColor = Color(uiColor: .label).opacity(0.66)
         }
 
         var body: some View {
@@ -34,11 +38,10 @@ extension OutlineView {
                         }
                     } label: {
                         Image(systemName: "magnifyingglass")
-                            .font(.system(size: 20, weight: .bold))
-                            .tint(isSearching ? .activeColor : .accentColor)
+                            .font(.system(size: 20, weight: .regular))
+                            .tint(isSearching ? .activeColor : buttonColor)
                             .padding()
                     }
-                    .padding(.leading, 8)
 
                     if isSearching {
                         HStack {
@@ -49,6 +52,7 @@ extension OutlineView {
                                 searchTerm = ""
                             } label: {
                                 Image(systemName: "xmark.circle")
+                                    .tint(buttonColor)
                             }
                             .disabled(searchTerm == "")
                         }
@@ -69,16 +73,15 @@ extension OutlineView {
                         }
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 20, weight: .bold))
-                            .tint(.accentColor)
+                            .font(.system(size: 20, weight: .regular))
+                            .tint(buttonColor)
                             .padding()
                     }
-                    .padding(.trailing, 16)
                 }
-                .padding(.bottom)
+                .padding(.horizontal)
                 .background(Color(uiColor: .secondarySystemBackground))
             }
-            .onChange(of: isShown) { _ in
+            .onChange(of: isShown) {
                 searchTerm = ""
                 isSearching = false
                 isSearchFieldFocused = false

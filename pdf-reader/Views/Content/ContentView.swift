@@ -90,38 +90,49 @@ struct ContentView: View {
                 }
 
                 if canShowButtons {
-                    VStack(spacing: 16) {
-                        if canShowOutlineButton {
-                            PdfButton(imageSystemName: "list.number", isActive: isOutlineShown) {
-                                withAnimation {
-                                    isOutlineShown.toggle()
-                                    areControlsShown.toggle()
+                    VStack {
+                        if areControlsShown {
+                            HStack {
+                                PageNumber()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+
+                                closeAndSwitchButtonsView
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                            }
+
+                            Spacer()
+                        }
+
+                        VStack(spacing: 16) {
+                            if canShowOutlineButton {
+                                PdfButton(imageSystemName: "list.number", isActive: isOutlineShown) {
+                                    withAnimation {
+                                        isOutlineShown.toggle()
+                                        areControlsShown.toggle()
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
+
+                            HStack {
+                                if areControlsShown {
+                                    pdfNavigationButtonsView
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .padding(.leading, 68)
+                                }
+
+                                PdfButton(imageSystemName: "ellipsis.rectangle", isActive: areControlsShown) {
+                                    withAnimation {
+                                        areControlsShown.toggle()
+                                    }
                                 }
                             }
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                         }
-
-                        PdfButton(imageSystemName: "ellipsis.rectangle", isActive: areControlsShown) {
-                            withAnimation {
-                                areControlsShown.toggle()
-                            }
-                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                     .padding(.horizontal, 24)
-                    .padding(.vertical, 8)
-
-                    if areControlsShown {
-                        PageNumber()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                            .padding()
-
-                        closeAndSwitchButtonsView
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                            .padding()
-
-                        pdfNavigationButtonsView
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    }
+                    .padding(.vertical, 16)
                 }
             } else {
                 ContentUnavailableView {

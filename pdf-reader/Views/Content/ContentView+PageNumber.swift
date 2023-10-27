@@ -32,15 +32,11 @@ extension ContentView {
                             .fontWeight(.medium)
                     }
                 }
-                .foregroundColor(.black.opacity(0.75))
+                .foregroundColor(.black)
                 .padding(.horizontal, 8)
                 .frame(height: 44)
                 .frame(minWidth: 44)
-                .background(RoundedRectangle(cornerRadius: 60)
-                    .fill(.white.opacity(0.66))
-                    .shadow(color: .blue.opacity(0.33), radius: 0.5, y: 0.5))
-            } else {
-                EmptyView()
+                .background(DefaultBackgroundView())
             }
         }
     }
