@@ -11,3 +11,11 @@ func uncurry<A, B, C>(_ function: @escaping ((A) -> (B) -> C)) -> (A, B) -> C {
         return function(a)(b)
     }
 }
+
+infix operator * : AdditionPrecedence
+
+func * <A, B, C>(_ fn1: @escaping (B) -> C, _ fn2: @escaping (A) -> B) -> (A) -> C {
+    return { a in
+        fn1(fn2(a))
+    }
+}
