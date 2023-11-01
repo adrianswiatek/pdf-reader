@@ -23,6 +23,14 @@ extension OutlineView {
             .yellow.opacity(0.5)
         }
 
+        private var canShowPageNumber: Bool {
+            node.page?.hasPageNumber == true
+        }
+
+        private var canShowPageLabel: Bool {
+            node.page?.hasPageLabel == true && node.page?.arePropertiesTheSame == false
+        }
+
         init(
             node: Outline.Node,
             level: Int,
@@ -54,10 +62,23 @@ extension OutlineView {
 
                 Spacer()
 
-                Text(node.formattedPageNumber)
+                if canShowPageNumber {
+                    HStack(spacing: 2) {
+                        if canShowPageLabel {
+                            Text(node.page?.pageNumber ?? "")
+                                .fontWeight(.thin)
+                            Text(" | ")
+                                .fontWeight(.thin)
+                            Text(node.page?.pageLabel ?? "")
+                                .fontWeight(.medium)
+                        } else {
+                            Text(node.page?.pageNumber ?? "")
+                                .fontWeight(.light)
+                        }
+                    }
                     .font(.system(size: 14))
-                    .fontWeight(.light)
                     .background(backgroundColorForText)
+                }
             }
             .foregroundColor(Color(uiColor: colorScheme == .light ? .darkText : .lightText))
             .padding(.leading, level * 20)

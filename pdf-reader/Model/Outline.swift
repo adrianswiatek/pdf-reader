@@ -43,12 +43,12 @@ struct Outline {
     }
 
     func withCurrentPage(_ page: Page?) -> Outline {
-        guard let pageNumber = page?.pageNumber else {
+        guard let pageIndex = page?.pageIndex else {
             return self
         }
 
         let isIncluded: (Node) -> Bool = {
-            $0.pageNumber.map { $0 <= pageNumber } ?? false
+            $0.page?.pageIndex.map { $0 <= pageIndex } ?? false
         }
 
         return Outline(nodes, withClosestToCurrent(nodes, isIncluded))

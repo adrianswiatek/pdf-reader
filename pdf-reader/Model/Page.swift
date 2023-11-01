@@ -1,22 +1,22 @@
 import PDFKit
 
-struct Page: Equatable {
+struct Page: Equatable, Hashable {
     private let pdfPage: PDFPage
 
     init(pdfPage: PDFPage) {
         self.pdfPage = pdfPage
     }
 
-    var pageLabel: String? {
-        pdfPage.label
-    }
-
-    var pageNumber: Int? {
+    var pageIndex: Int? {
         pdfPage.pageRef?.pageNumber
     }
 
-    var formattedPageNumber: String? {
-        pageNumber.map(String.init)
+    var pageNumber: String? {
+        pageIndex.map(String.init)
+    }
+
+    var pageLabel: String? {
+        pdfPage.label
     }
 
     var hasPageLabel: Bool {
@@ -24,11 +24,11 @@ struct Page: Equatable {
     }
 
     var hasPageNumber: Bool {
-        formattedPageNumber?.isEmpty == false
+        pageNumber?.isEmpty == false
     }
 
     var arePropertiesTheSame: Bool {
-        pageLabel == formattedPageNumber
+        pageLabel == pageNumber
     }
 
     var asPdfPage: PDFPage {

@@ -34,7 +34,7 @@ final class BookProgressStore {
     private func bind() {
         pageListener
             .currentPagePublisher
-            .compactMap { $0?.pageNumber }
+            .compactMap { $0?.pageIndex }
             .debounce(for: .seconds(1), scheduler: RunLoop.main)
             .sink { [weak self] in
                 self?.currentBookProgress?.page = $0
