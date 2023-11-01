@@ -1,14 +1,22 @@
-func curry<A, B, C>(_ function: @escaping (A, B) -> C) -> (A) -> (B) -> C {
+func curry<A, B, C>(_ fn: @escaping (A, B) -> C) -> (A) -> (B) -> C {
     return { a in
         return { b in
-            return function(a, b)
+            return fn(a, b)
         }
     }
 }
 
-func uncurry<A, B, C>(_ function: @escaping ((A) -> (B) -> C)) -> (A, B) -> C {
+func uncurry<A, B, C>(_ fn: @escaping ((A) -> (B) -> C)) -> (A, B) -> C {
     return { (a, b) in
-        return function(a)(b)
+        return fn(a)(b)
+    }
+}
+
+func flip<A, B, C>(_ fn: @escaping (A) -> (B) -> C) -> (B) -> (A) -> C {
+    return { b in
+        return { a in
+            return fn(a)(b)
+        }
     }
 }
 
