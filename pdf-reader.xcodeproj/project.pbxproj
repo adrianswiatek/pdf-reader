@@ -37,6 +37,7 @@
 		E8CB40092AAA5B41000B10BA /* PdfKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB40082AAA5B41000B10BA /* PdfKitView.swift */; };
 		E8CB400E2AAA6648000B10BA /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB400D2AAA6648000B10BA /* OutlineView.swift */; };
 		E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */; };
+		E8F06E9C2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		E8CB40082AAA5B41000B10BA /* PdfKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfKitView.swift; sourceTree = "<group>"; };
 		E8CB400D2AAA6648000B10BA /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
 		E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PdfButton.swift"; sourceTree = "<group>"; };
+		E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+NoContent+BaseButtonStyle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */,
 				E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */,
 				E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */,
+				E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				E81840242AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift in Sources */,
 				E818401E2AAF6F8700F997B0 /* OutlineView+RowsView.swift in Sources */,
 				E81840262AAFB9BA00F997B0 /* ContentView+PdfButtons.swift in Sources */,
+				E8F06E9C2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift in Sources */,
 				E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */,
 				E85F246A2AAE65560041BF1B /* Outline.swift in Sources */,
 				E81EFCAD2ABD021500D75085 /* PdfKitView+Destination.swift in Sources */,
