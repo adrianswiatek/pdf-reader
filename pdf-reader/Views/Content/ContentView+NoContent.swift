@@ -6,14 +6,14 @@ extension ContentView {
         private var isFilePickerShown: Bool
 
         @Binding
-        private var areRecentBooksShown: Bool
+        private var arePreviousShown: Bool
 
         init(
             _ isFilePickerShown: Binding<Bool>,
-            _ areRecentBooksShown: Binding<Bool>
+            _ arePreviousShown: Binding<Bool>
         ) {
             self._isFilePickerShown = isFilePickerShown
-            self._areRecentBooksShown = areRecentBooksShown
+            self._arePreviousShown = arePreviousShown
         }
 
         var body: some View {
@@ -45,7 +45,7 @@ extension ContentView {
                     }
 
                     Button {
-                        areRecentBooksShown.toggle()
+                        arePreviousShown.toggle()
                     } label: {
                         VStack {
                             Image(systemName: "list.bullet")

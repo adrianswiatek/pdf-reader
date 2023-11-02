@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var isOutlineShown = false
     @State private var isPageNumberAlertShown = false
     @State private var isFilePickerShown = false
+    @State private var arePreviousShown = false
     @State private var areControlsShown = false
     @State private var pdfKitView = PdfKitView()
 
@@ -135,7 +136,7 @@ struct ContentView: View {
                     .padding(.vertical, 16)
                 }
             } else {
-                NoContentView($isFilePickerShown, .constant(false))
+                NoContentView($isFilePickerShown, $arePreviousShown)
             }
         }
         .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) { result in
@@ -148,6 +149,9 @@ struct ContentView: View {
                 pdfKitView.goTo($0)
                 areControlsShown.toggle()
             }
+        }
+        .sheet(isPresented: $arePreviousShown) {
+            PreviousView()
         }
         .onAppear {
             bookProgressStore.modelContext = modelContext
