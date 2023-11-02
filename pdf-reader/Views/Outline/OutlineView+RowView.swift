@@ -16,7 +16,7 @@ extension OutlineView {
         private let isCurrent: Bool
 
         private var backgroundColorForText: Color {
-            isCurrent ? .gray.opacity(0.5) : .clear
+            isCurrent ? Color(uiColor: .systemOrange).opacity(0.33) : .clear
         }
 
         private var backgroundColorForFoundText: Color {
