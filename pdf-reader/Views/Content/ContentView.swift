@@ -135,22 +135,7 @@ struct ContentView: View {
                     .padding(.vertical, 16)
                 }
             } else {
-                ContentUnavailableView {
-                    Image(systemName: "book.closed.circle.fill")
-                        .font(.system(size: 72))
-                        .symbolEffect(.scale)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.orange)
-                    Text("No PDF document opened")
-                } actions: {
-                    Button("Select a document") {
-                        isFilePickerShown.toggle()
-                    }
-                    .font(.title2)
-                    .buttonStyle(.borderless)
-                    .padding()
-                }
-                .background(Color(uiColor: .systemBackground).gradient)
+                NoContentView($isFilePickerShown, .constant(false))
             }
         }
         .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) { result in

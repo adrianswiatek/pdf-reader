@@ -5,8 +5,15 @@ extension ContentView {
         @Binding
         private var isFilePickerShown: Bool
 
-        init(_ isFilePickerShown: Binding<Bool>) {
+        @Binding
+        private var areRecentBooksShown: Bool
+
+        init(
+            _ isFilePickerShown: Binding<Bool>,
+            _ areRecentBooksShown: Binding<Bool>
+        ) {
             self._isFilePickerShown = isFilePickerShown
+            self._areRecentBooksShown = areRecentBooksShown
         }
 
         var body: some View {
@@ -16,13 +23,50 @@ extension ContentView {
                     .symbolEffect(.scale)
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(.orange)
+                    .padding(.bottom, 4)
+
                 Text("No PDF document opened")
             } actions: {
-                Button("Select a document") {
-                    isFilePickerShown.toggle()
+                HStack(alignment: .bottom, spacing: 32) {
+                    Button {
+                        isFilePickerShown.toggle()
+                    } label: {
+                        VStack {
+                            Image(systemName: "doc.fill")
+                                .font(.largeTitle)
+
+                            Text("Open")
+                                .font(.title3)
+                        }
+                        .fontWeight(.medium)
+                        .foregroundColor(Color(uiColor: .label).opacity(0.75))
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                        .padding()
+                    }
+
+                    Button {
+                        areRecentBooksShown.toggle()
+                    } label: {
+                        VStack {
+                            Image(systemName: "list.bullet")
+                                .font(.largeTitle)
+                                .padding(.bottom, 3)
+
+                            Text("Previous")
+                                .font(.title3)
+                        }
+                        .fontWeight(.regular)
+                        .foregroundColor(Color(uiColor: .label).opacity(0.75))
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                        .padding()
+                    }
                 }
-                .font(.title2)
-                .buttonStyle(.borderless)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 8)
+                .background(RoundedRectangle(cornerRadius: 25.0)
+                    .fill(Color(uiColor: .secondarySystemBackground))
+                    .shadow(radius: 1)
+                )
                 .padding()
             }
             .background(Color(uiColor: .systemBackground).gradient)
