@@ -21,10 +21,18 @@ final class BookProgressStore {
         modelContext?.insert(bookProgress)
     }
 
-    func fetchBookProgressForUrl(_ url: URL) -> BookProgress? {
+    func fetchAll() -> [BookProgress] {
         let fetchDescriptor = FetchDescriptor<BookProgress>()
         let booksProgresses = try? modelContext?.fetch(fetchDescriptor)
-        return booksProgresses?.first { $0.url == url }
+        return booksProgresses ?? []
+    }
+
+    func fetchBookProgressForUrl(_ url: URL) -> BookProgress? {
+        fetchAll().first { $0.url == url }
+    }
+
+    func deleteBookProgress(_ bookProgress: BookProgress) {
+        modelContext?.delete(bookProgress)
     }
 
     func setAsCurrentBookProgressWithUrl(_ url: URL) {
