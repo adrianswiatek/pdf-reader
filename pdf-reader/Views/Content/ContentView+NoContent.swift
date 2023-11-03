@@ -31,7 +31,7 @@ extension ContentView {
                     .symbolEffect(.scale)
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(.orange)
-                    .padding(.bottom, 4)
+                    .padding(.bottom, 16)
 
                 Text("No PDF document opened")
             } actions: {
@@ -75,7 +75,7 @@ extension ContentView {
                     .fill(Color(uiColor: .secondarySystemBackground))
                     .shadow(radius: 1)
                 )
-                .padding()
+                .padding(32)
             }
             .background(Color(uiColor: .systemBackground).gradient)
             .onChange(of: bookProgresses, { _, _ in setCanShowPrevious() })

@@ -20,6 +20,10 @@ func flip<A, B, C>(_ fn: @escaping (A) -> (B) -> C) -> (B) -> (A) -> C {
     }
 }
 
+func doNothing() -> Void {
+    // Nothing to do
+}
+
 infix operator * : AdditionPrecedence
 
 func * <A, B, C>(_ fn1: @escaping (B) -> C, _ fn2: @escaping (A) -> B) -> (A) -> C {

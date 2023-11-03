@@ -35,6 +35,17 @@ final class BookProgressStore {
         modelContext?.delete(bookProgress)
     }
 
+    func deleteBookProgresses(_ bookProgresses: [BookProgress]) {
+        guard !bookProgresses.isEmpty else { return }
+
+        deleteBookProgress(bookProgresses.head)
+        deleteBookProgresses(bookProgresses.tail)
+    }
+
+    func deleteAllBookProgresses() {
+        deleteBookProgresses(fetchAll())
+    }
+
     func setAsCurrentBookProgressWithUrl(_ url: URL) {
         currentBookProgress = fetchBookProgressForUrl(url)
     }
