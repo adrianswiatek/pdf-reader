@@ -17,14 +17,23 @@ struct PreviousView: View {
     @State
     private var isClearAllAlertShown: Bool = false
 
+    @State
+    private var selectedBookProgress: BookProgress? = nil
+
     private var bookProgresses: [BookProgress] {
         unsortedBookProgresses.sorted(by: areInIncreasingOrder)
     }
 
+    private let onUrlSelected: (URL) -> Void
+
+    init(onUrlSelected: @escaping (URL) -> Void) {
+        self.onUrlSelected = onUrlSelected
+    }
+
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(bookProgresses) { bookProgress in
+            List(selection: $selectedBookProgress) {
+                ForEach(bookProgresses, id: \.self) { bookProgress in
                     HStack {
                         Text(bookProgress.title)
                         Spacer()
@@ -32,6 +41,7 @@ struct PreviousView: View {
                     }
                 }
                 .onDelete(perform: deleteBookProgress)
+                .listRowBackground(Color.clear)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -83,9 +93,13 @@ struct PreviousView: View {
             Text("You are about to remove all entries")
         })
         .onChange(of: bookProgresses) { _, bookProgresses in
-            if bookProgresses.isEmpty {
-                dismiss()
-            }
+            bookProgresses.ifEmpty { dismiss() }
+        }
+        .onChange(of: selectedBookProgress) { _, _ in
+            dismiss()
+        }
+        .onDisappear {
+            selectedBookProgress.ifSome { onUrlSelected($0.url) }
         }
     }
 
@@ -94,13 +108,13 @@ struct PreviousView: View {
             return
         }
         bookProgressStore.deleteBookProgress(bookProgresses[index])
-        deleteBookProgress(indexSet.tail())
+        deleteBookProgress(indexSet.tail)
     }
 
     private func areInIncreasingOrder(lhs: BookProgress, rhs: BookProgress) -> Bool {
         switch sortingOption {
-        case .lastUpdate:
-            lhs.dateOfUpdate < rhs.dateOfUpdate
+        case .lastUpdate: 
+            lhs.dateOfUpdate > rhs.dateOfUpdate
         case .name:
             lhs.title < rhs.title
         }
@@ -120,11 +134,5 @@ private extension PreviousView {
                 self = .lastUpdate
             }
         }
-    }
-}
-
-private extension IndexSet {
-    func tail() -> IndexSet {
-        IndexSet(dropFirst())
     }
 }

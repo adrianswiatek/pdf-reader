@@ -5,9 +5,7 @@ import SwiftUI
 struct PdfKitView: UIViewRepresentable {
     var bookProgressStore: BookProgressStore?
 
-    var isPdfLoaded: Bool {
-        pdfView.document != nil
-    }
+    private (set) var isPdfLoaded: Bool = false
 
     var outline: Outline {
         pdfView.document.flatMap(Outline.makeFromDocument) ?? .empty
@@ -42,9 +40,10 @@ struct PdfKitView: UIViewRepresentable {
         }
     }
 
-    func loadDocumentWithUrl(_ url: URL) {
+    mutating func loadDocumentWithUrl(_ url: URL) {
         if url.startAccessingSecurityScopedResource() {
             pdfView.document = PDFDocument(url: url)
+            setIsPdfLoaded()
             setBookProgressForUrl(url)
             url.stopAccessingSecurityScopedResource()
         }
@@ -61,7 +60,12 @@ struct PdfKitView: UIViewRepresentable {
         bookProgressStore?.setAsCurrentBookProgressWithUrl(url)
     }
 
-    func closeDocument() {
+    mutating func closeDocument() {
         pdfView.document = nil
+        setIsPdfLoaded()
+    }
+
+    private mutating func setIsPdfLoaded() {
+        isPdfLoaded = pdfView.document != nil
     }
 }

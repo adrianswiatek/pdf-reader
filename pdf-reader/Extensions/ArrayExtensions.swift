@@ -1,12 +1,12 @@
 import PDFKit
 
-extension Array where Element: Equatable  {
+extension Array {
     var head: Element {
         self[0]
     }
 
     var tail: [Element] {
-        last != nil && last != first ? Array(self[1...]) : []
+        Array(dropFirst())
     }
 }
 

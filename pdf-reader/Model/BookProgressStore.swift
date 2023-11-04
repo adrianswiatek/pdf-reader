@@ -56,7 +56,7 @@ final class BookProgressStore {
             .compactMap { $0?.pageIndex }
             .debounce(for: .seconds(1), scheduler: RunLoop.main)
             .sink { [weak self] in
-                self?.currentBookProgress?.page = $0
+                self?.currentBookProgress?.updatePage($0)
                 try? self?.modelContext?.save()
             }
             .store(in: &cancellables)

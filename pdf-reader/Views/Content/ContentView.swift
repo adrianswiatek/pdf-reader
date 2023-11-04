@@ -11,11 +11,12 @@ struct ContentView: View {
     @Environment(\.modelContext) 
     private var modelContext: ModelContext
 
+    @State private var areControlsShown = false
+    @State private var arePreviousShown = false
+    @State private var canShowPdfContent = false
+    @State private var isFilePickerShown = false
     @State private var isOutlineShown = false
     @State private var isPageNumberAlertShown = false
-    @State private var isFilePickerShown = false
-    @State private var arePreviousShown = false
-    @State private var areControlsShown = false
     @State private var pdfKitView = PdfKitView()
 
     private var outlineView: OutlineView {
@@ -58,10 +59,6 @@ struct ContentView: View {
             .fill(.background.opacity(0.8))
             .frame(height: 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-    }
-
-    private var canShowPdfContent: Bool {
-        pdfKitView.isPdfLoaded
     }
 
     private var canShowOutline: Bool {
@@ -139,8 +136,8 @@ struct ContentView: View {
                 NoContentView($isFilePickerShown, $arePreviousShown)
             }
         }
-        .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) { result in
-            if case .success(let url) = result {
+        .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) {
+            if case .success(let url) = $0 {
                 pdfKitView.loadDocumentWithUrl(url)
             }
         }
@@ -151,7 +148,12 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $arePreviousShown) {
-            PreviousView()
+            PreviousView(onUrlSelected: {
+                pdfKitView.loadDocumentWithUrl($0)
+            })
+        }
+        .onChange(of: pdfKitView.isPdfLoaded) {
+            canShowPdfContent = $1
         }
         .onAppear {
             bookProgressStore.modelContext = modelContext
