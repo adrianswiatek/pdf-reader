@@ -6,6 +6,12 @@ extension Optional {
     func apply<T>(_ transform: ((Wrapped) -> T)?) -> T? {
         transform.flatMap { map($0) }
     }
+
+    func ifSome(action: (Wrapped) -> Void) {
+        if let self = self {
+            action(self)
+        }
+    }
 }
 
 infix operator <§>: AdditionPrecedence

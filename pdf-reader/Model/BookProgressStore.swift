@@ -21,10 +21,29 @@ final class BookProgressStore {
         modelContext?.insert(bookProgress)
     }
 
-    func fetchBookProgressForUrl(_ url: URL) -> BookProgress? {
+    func fetchAll() -> [BookProgress] {
         let fetchDescriptor = FetchDescriptor<BookProgress>()
         let booksProgresses = try? modelContext?.fetch(fetchDescriptor)
-        return booksProgresses?.first { $0.url == url }
+        return booksProgresses ?? []
+    }
+
+    func fetchBookProgressForUrl(_ url: URL) -> BookProgress? {
+        fetchAll().first { $0.url == url }
+    }
+
+    func deleteBookProgress(_ bookProgress: BookProgress) {
+        modelContext?.delete(bookProgress)
+    }
+
+    func deleteBookProgresses(_ bookProgresses: [BookProgress]) {
+        guard !bookProgresses.isEmpty else { return }
+
+        deleteBookProgress(bookProgresses.head)
+        deleteBookProgresses(bookProgresses.tail)
+    }
+
+    func deleteAllBookProgresses() {
+        deleteBookProgresses(fetchAll())
     }
 
     func setAsCurrentBookProgressWithUrl(_ url: URL) {
@@ -37,7 +56,7 @@ final class BookProgressStore {
             .compactMap { $0?.pageIndex }
             .debounce(for: .seconds(1), scheduler: RunLoop.main)
             .sink { [weak self] in
-                self?.currentBookProgress?.page = $0
+                self?.currentBookProgress?.updatePage($0)
                 try? self?.modelContext?.save()
             }
             .store(in: &cancellables)
