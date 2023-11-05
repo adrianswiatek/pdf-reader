@@ -17,8 +17,8 @@ struct PreviousView: View {
     @State
     private var isClearAllAlertShown: Bool = false
 
-    @State
-    private var selectedBookProgress: BookProgress? = nil
+//    @State
+//    private var selectedBookProgress: BookProgress? = nil
 
     private var bookProgresses: [BookProgress] {
         unsortedBookProgresses.sorted(by: areInIncreasingOrder)
@@ -32,7 +32,8 @@ struct PreviousView: View {
 
     var body: some View {
         NavigationStack {
-            List(selection: $selectedBookProgress) {
+//            List(selection: $selectedBookProgress) {
+            List {
                 ForEach(bookProgresses, id: \.self) { bookProgress in
                     HStack {
                         Text(bookProgress.title)
@@ -95,12 +96,12 @@ struct PreviousView: View {
         .onChange(of: bookProgresses) { _, bookProgresses in
             bookProgresses.ifEmpty { dismiss() }
         }
-        .onChange(of: selectedBookProgress) { _, _ in
-            dismiss()
-        }
-        .onDisappear {
-            selectedBookProgress.ifSome { onUrlSelected($0.url) }
-        }
+//        .onChange(of: selectedBookProgress) { _, _ in
+//            dismiss()
+//        }
+//        .onDisappear {
+//            selectedBookProgress.ifSome { onUrlSelected($0.url) }
+//        }
     }
 
     private func deleteBookProgress(_ indexSet: IndexSet) {

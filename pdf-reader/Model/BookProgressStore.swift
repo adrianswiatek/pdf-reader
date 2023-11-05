@@ -28,7 +28,7 @@ final class BookProgressStore {
     }
 
     func fetchBookProgressForUrl(_ url: URL) -> BookProgress? {
-        fetchAll().first { $0.url == url }
+        fetchAll().first(where: BookProgress.hasTheSameTitle(url))
     }
 
     func deleteBookProgress(_ bookProgress: BookProgress) {

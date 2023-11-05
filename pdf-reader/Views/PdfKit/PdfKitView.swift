@@ -40,13 +40,21 @@ struct PdfKitView: UIViewRepresentable {
         }
     }
 
-    mutating func loadDocumentWithUrl(_ url: URL) {
-        if url.startAccessingSecurityScopedResource() {
-            pdfView.document = PDFDocument(url: url)
-            setIsPdfLoaded()
-            setBookProgressForUrl(url)
-            url.stopAccessingSecurityScopedResource()
+    mutating func loadDocumentWithSecurityScopedUrl(_ url: URL) {
+        guard url.startAccessingSecurityScopedResource() else {
+            return
         }
+
+        loadDocumentWithUrl(url)
+        url.stopAccessingSecurityScopedResource()
+    }
+
+    mutating func loadDocumentWithUrl(_ url: URL) {
+        pdfView.document = PDFDocument(url: url)
+        pdfView.autoScales = true
+
+        setIsPdfLoaded()
+        setBookProgressForUrl(url)
     }
 
     private func setBookProgressForUrl(_ url: URL) {

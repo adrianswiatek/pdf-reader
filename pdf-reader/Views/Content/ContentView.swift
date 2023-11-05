@@ -138,7 +138,7 @@ struct ContentView: View {
         }
         .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) {
             if case .success(let url) = $0 {
-                pdfKitView.loadDocumentWithUrl(url)
+                pdfKitView.loadDocumentWithSecurityScopedUrl(url)
             }
         }
         .alert("Go to page", isPresented: $isPageNumberAlertShown) {
@@ -158,6 +158,9 @@ struct ContentView: View {
         .onAppear {
             bookProgressStore.modelContext = modelContext
             pdfKitView.bookProgressStore = bookProgressStore
+        }
+        .onOpenURL {
+            pdfKitView.loadDocumentWithUrl($0)
         }
     }
 }
