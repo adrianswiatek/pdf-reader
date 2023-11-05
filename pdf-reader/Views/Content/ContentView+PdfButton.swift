@@ -7,6 +7,7 @@ extension ContentView {
 
         private let font: Font
         private let fontWeight: Font.Weight
+        private let side: CGFloat
         private let tintColor: Color
 
         init(
@@ -21,6 +22,7 @@ extension ContentView {
 
             self.font = size == .regular ? .title : .title3
             self.fontWeight = isDisabled ? .thin : .medium
+            self.side = size == .regular ? 40 : 32
 
             self.tintColor = switch (isActive, isDisabled) {
             case (_, true): .gray.opacity(0.5)
@@ -35,7 +37,7 @@ extension ContentView {
                     .font(font)
                     .fontWeight(.light)
                     .tint(tintColor)
-                    .frame(width: 40, height: 40)
+                    .frame(width: side, height: side)
                     .padding(4)
                     .background(DefaultBackgroundView())
             }

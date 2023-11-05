@@ -46,7 +46,7 @@ struct ContentView: View {
                 }
             }
 
-            PdfButton(imageSystemName: "arrow.triangle.2.circlepath") {
+            PdfButton(imageSystemName: "arrow.triangle.2.circlepath", size: .small) {
                 isFilePickerShown.toggle()
                 areControlsShown.toggle()
                 pageListener.clearState()
