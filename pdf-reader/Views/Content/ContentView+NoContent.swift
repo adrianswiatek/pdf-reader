@@ -10,18 +10,18 @@ extension ContentView {
         private var isFilePickerShown: Bool
 
         @Binding
-        private var arePreviousShown: Bool
+        private var isHistoryShown: Bool
 
         @State
-        private var canShowPrevious: Bool
+        private var canShowHistory: Bool
 
         init(
             _ isFilePickerShown: Binding<Bool>,
-            _ arePreviousShown: Binding<Bool>
+            _ isHistoryShown: Binding<Bool>
         ) {
             self._isFilePickerShown = isFilePickerShown
-            self._arePreviousShown = arePreviousShown
-            self._canShowPrevious = State(wrappedValue: false)
+            self._isHistoryShown = isHistoryShown
+            self._canShowHistory = State(wrappedValue: false)
         }
 
         var body: some View {
@@ -35,11 +35,11 @@ extension ContentView {
 
                 Text("No PDF document opened")
             } actions: {
-                HStack(alignment: .bottom, spacing: 64) {
+                HStack(alignment: .bottom, spacing: 48) {
                     Button {
                         isFilePickerShown.toggle()
                     } label: {
-                        VStack {
+                        HStack {
                             Image(systemName: "doc.fill")
                                 .font(.largeTitle)
 
@@ -53,24 +53,23 @@ extension ContentView {
                     .buttonStyle(BaseButtonStyle().accented())
 
                     Button {
-                        arePreviousShown.toggle()
+                        isHistoryShown.toggle()
                     } label: {
-                        VStack {
-                            Image(systemName: "list.bullet")
+                        HStack {
+                            Image(systemName: "clock")
                                 .font(.largeTitle)
-                                .padding(.bottom, 3)
 
-                            Text("Previous")
+                            Text("History")
                                 .font(.title3)
                         }
                         .padding(.trailing)
                         .padding(.vertical)
                     }
-                    .disabled(!canShowPrevious)
-                    .buttonStyle(BaseButtonStyle(isActive: canShowPrevious))
+                    .disabled(!canShowHistory)
+                    .buttonStyle(BaseButtonStyle(isActive: canShowHistory))
                 }
-                .padding(.horizontal, 24)
-                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 4)
                 .background(RoundedRectangle(cornerRadius: 25.0)
                     .fill(Color(uiColor: .secondarySystemBackground))
                     .shadow(radius: 1)
@@ -78,12 +77,12 @@ extension ContentView {
                 .padding(32)
             }
             .background(Color(uiColor: .systemBackground).gradient)
-            .onChange(of: bookProgresses, { _, _ in setCanShowPrevious() })
-            .onAppear(perform: setCanShowPrevious)
+            .onChange(of: bookProgresses, { _, _ in setCanShowHistory() })
+            .onAppear(perform: setCanShowHistory)
         }
 
-        private func setCanShowPrevious() {
-            canShowPrevious = !bookProgresses.isEmpty
+        private func setCanShowHistory() {
+            canShowHistory = !bookProgresses.isEmpty
         }
     }
 }

@@ -12,9 +12,9 @@ struct ContentView: View {
     private var modelContext: ModelContext
 
     @State private var areControlsShown = false
-    @State private var arePreviousShown = false
     @State private var canShowPdfContent = false
     @State private var isFilePickerShown = false
+    @State private var isHistoryShown = false
     @State private var isOutlineShown = false
     @State private var isPageNumberAlertShown = false
     @State private var pdfKitView = PdfKitView()
@@ -133,7 +133,7 @@ struct ContentView: View {
                     .padding(.vertical, 16)
                 }
             } else {
-                NoContentView($isFilePickerShown, $arePreviousShown)
+                NoContentView($isFilePickerShown, $isHistoryShown)
             }
         }
         .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) {
@@ -147,10 +147,8 @@ struct ContentView: View {
                 areControlsShown.toggle()
             }
         }
-        .sheet(isPresented: $arePreviousShown) {
-            PreviousView(onUrlSelected: {
-                pdfKitView.loadDocumentWithUrl($0)
-            })
+        .sheet(isPresented: $isHistoryShown) {
+            HistoryView()
         }
         .onChange(of: pdfKitView.isPdfLoaded) {
             canShowPdfContent = $1

@@ -32,7 +32,7 @@ extension ContentView.NoContentView {
 
         func opacity(isPressed: Bool) -> Double {
             if isEnabled {
-                return isPressed ? 0.75 / 2 : 0.75
+                return isPressed ? 0.1 : 0.75
             } else {
                 return 0.25
             }

@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-struct PreviousView: View {
+struct HistoryView: View {
     @Environment(BookProgressStore.self)
     private var bookProgressStore: BookProgressStore
 
@@ -17,22 +17,12 @@ struct PreviousView: View {
     @State
     private var isClearAllAlertShown: Bool = false
 
-//    @State
-//    private var selectedBookProgress: BookProgress? = nil
-
     private var bookProgresses: [BookProgress] {
         unsortedBookProgresses.sorted(by: areInIncreasingOrder)
     }
 
-    private let onUrlSelected: (URL) -> Void
-
-    init(onUrlSelected: @escaping (URL) -> Void) {
-        self.onUrlSelected = onUrlSelected
-    }
-
     var body: some View {
         NavigationStack {
-//            List(selection: $selectedBookProgress) {
             List {
                 ForEach(bookProgresses, id: \.self) { bookProgress in
                     HStack {
@@ -96,12 +86,6 @@ struct PreviousView: View {
         .onChange(of: bookProgresses) { _, bookProgresses in
             bookProgresses.ifEmpty { dismiss() }
         }
-//        .onChange(of: selectedBookProgress) { _, _ in
-//            dismiss()
-//        }
-//        .onDisappear {
-//            selectedBookProgress.ifSome { onUrlSelected($0.url) }
-//        }
     }
 
     private func deleteBookProgress(_ indexSet: IndexSet) {
@@ -122,7 +106,7 @@ struct PreviousView: View {
     }
 }
 
-private extension PreviousView {
+private extension HistoryView {
     enum SortingOption: String {
         case lastUpdate = "last update"
         case name
