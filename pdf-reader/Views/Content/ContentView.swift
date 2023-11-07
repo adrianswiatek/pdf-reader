@@ -112,11 +112,10 @@ struct ContentView: View {
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                             }
 
-                            HStack {
+                            HStack(spacing: 32) {
                                 if areControlsShown {
                                     pdfNavigationButtonsView
-                                        .frame(maxWidth: .infinity, alignment: .center)
-                                        .padding(.leading, 68)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
 
                                 PdfButton(imageSystemName: "ellipsis.rectangle", isActive: areControlsShown) {

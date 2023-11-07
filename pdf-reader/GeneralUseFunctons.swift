@@ -24,7 +24,12 @@ func doNothing() -> Void {
     // Nothing to do
 }
 
-infix operator * : AdditionPrecedence
+precedencegroup CompositionPrecedence {
+    associativity: right
+    higherThan: AdditionPrecedence
+}
+
+infix operator * : CompositionPrecedence
 
 func * <A, B, C>(_ fn1: @escaping (B) -> C, _ fn2: @escaping (A) -> B) -> (A) -> C {
     return { a in

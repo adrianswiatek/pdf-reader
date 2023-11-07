@@ -48,9 +48,16 @@ extension ContentView {
                             pdfKitView.goTo(.lastPage)
                         }
 
+                        PdfButton(imageSystemName: "arrow.uturn.forward", isDisabled: !pageListener.hasAnotherPage) {
+                            if let anotherPage = pageListener.anotherPage() {
+                                pdfKitView.goTo(.page(anotherPage.asPdfPage))
+                            }
+                        }
+
                         PdfButton(imageSystemName: "number") {
                             isPageNumberAlertShown.toggle()
                         }
+                        .padding(.horizontal)
                     }
                 }
             }

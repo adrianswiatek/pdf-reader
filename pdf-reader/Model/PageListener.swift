@@ -19,8 +19,13 @@ final class PageListener {
         !previousPages.isEmpty
     }
 
+    var hasAnotherPage: Bool {
+        !anotherPages.isEmpty
+    }
+
     private var currentDocument: PDFDocument?
     private var previousPages: [Page]
+    private var anotherPages: [Page]
     private var cancellables: Set<AnyCancellable>
 
     private let notificationCenter: NotificationCenter
@@ -29,18 +34,32 @@ final class PageListener {
         self.notificationCenter = notificationCenter
         self.currentPageSubject = .init(nil)
         self.previousPages = []
+        self.anotherPages = []
         self.cancellables = []
         self.bind()
     }
 
     func previousPage() -> Page? {
-        previousPages.last
+        guard let previousPage = previousPages.last else {
+            return nil
+        }
+
+        if let currentPage {
+            anotherPages.append(currentPage)
+        }
+
+        return previousPage
+    }
+
+    func anotherPage() -> Page? {
+        anotherPages.popLast()
     }
 
     func clearState() {
         currentDocument = nil
         currentPageSubject.send(nil)
         previousPages.removeAll()
+        anotherPages.removeAll()
     }
 
     private func bind() {
@@ -71,13 +90,13 @@ final class PageListener {
     }
 
     private func appendCurrentPageToHistoryIfNeeded(_ incomingPage: Page) {
-        if incomingPage != previousPage(), let currentPage = currentPageSubject.value {
+        if incomingPage != previousPages.last, let currentPage = currentPageSubject.value {
             previousPages.append(currentPage)
         }
     }
 
     private func removeLastPageFromHistoryIfNeeded(_ incomingPage: Page) {
-        if incomingPage == previousPage() {
+        if incomingPage == previousPages.last {
             previousPages.removeLast()
         }
     }
