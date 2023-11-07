@@ -11,7 +11,7 @@
 		E818401E2AAF6F8700F997B0 /* OutlineView+RowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818401D2AAF6F8700F997B0 /* OutlineView+RowsView.swift */; };
 		E81840202AAF71E900F997B0 /* OutlineView+HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818401F2AAF71E900F997B0 /* OutlineView+HeaderView.swift */; };
 		E81840242AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */; };
-		E81840262AAFB9BA00F997B0 /* ContentView+PdfButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */; };
+		E81840262AAFB9BA00F997B0 /* ContentView+NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81840252AAFB9BA00F997B0 /* ContentView+NavigationButtons.swift */; };
 		E81EFCA32ABCEB3F00D75085 /* PageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EFCA22ABCEB3F00D75085 /* PageListener.swift */; };
 		E81EFCAD2ABD021500D75085 /* PdfKitView+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EFCAC2ABD021500D75085 /* PdfKitView+Destination.swift */; };
 		E8292B3E2AB78F1A00AE9C31 /* Outline+Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8292B3D2AB78F1A00AE9C31 /* Outline+Node.swift */; };
@@ -47,7 +47,7 @@
 		E818401D2AAF6F8700F997B0 /* OutlineView+RowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineView+RowsView.swift"; sourceTree = "<group>"; };
 		E818401F2AAF71E900F997B0 /* OutlineView+HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineView+HeaderView.swift"; sourceTree = "<group>"; };
 		E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PageNumberAlert.swift"; sourceTree = "<group>"; };
-		E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PdfButtons.swift"; sourceTree = "<group>"; };
+		E81840252AAFB9BA00F997B0 /* ContentView+NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+NavigationButtons.swift"; sourceTree = "<group>"; };
 		E81EFCA22ABCEB3F00D75085 /* PageListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListener.swift; sourceTree = "<group>"; };
 		E81EFCAC2ABD021500D75085 /* PdfKitView+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PdfKitView+Destination.swift"; sourceTree = "<group>"; };
 		E8292B3D2AB78F1A00AE9C31 /* Outline+Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outline+Node.swift"; sourceTree = "<group>"; };
@@ -106,12 +106,12 @@
 			isa = PBXGroup;
 			children = (
 				E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */,
+				E81840252AAFB9BA00F997B0 /* ContentView+NavigationButtons.swift */,
 				E82DE4442AF34E27009EDCEC /* ContentView+NoContent.swift */,
+				E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */,
 				E88E793D2ABE4334008FAE49 /* ContentView+PageNumber.swift */,
 				E81840232AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift */,
 				E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */,
-				E81840252AAFB9BA00F997B0 /* ContentView+PdfButtons.swift */,
-				E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 				E81EFCA32ABCEB3F00D75085 /* PageListener.swift in Sources */,
 				E81840242AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift in Sources */,
 				E818401E2AAF6F8700F997B0 /* OutlineView+RowsView.swift in Sources */,
-				E81840262AAFB9BA00F997B0 /* ContentView+PdfButtons.swift in Sources */,
+				E81840262AAFB9BA00F997B0 /* ContentView+NavigationButtons.swift in Sources */,
 				E8F06E9C2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift in Sources */,
 				E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */,
 				E85F246A2AAE65560041BF1B /* Outline.swift in Sources */,

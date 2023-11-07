@@ -27,11 +27,16 @@ struct ContentView: View {
         )
     }
 
-    private var pdfNavigationButtonsView: PdfButtonsView {
-        PdfButtonsView(
+    private var goToPageButtonView: PdfButton {
+        PdfButton(imageSystemName: "number") {
+            isPageNumberAlertShown.toggle()
+        }
+    }
+
+    private var pdfNavigationButtonsView: NavigationButtonsView {
+        NavigationButtonsView(
             pdfKitView: pdfKitView,
             isOutlineShown: $isOutlineShown,
-            isPageNumberAlertShown: $isPageNumberAlertShown,
             areButtonsShown: $areControlsShown
         )
     }
@@ -112,11 +117,16 @@ struct ContentView: View {
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                             }
 
-                            HStack(spacing: 32) {
+                            HStack(spacing: 16) {
                                 if areControlsShown {
+                                    goToPageButtonView
+
+                                    Spacer()
+
                                     pdfNavigationButtonsView
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
+
+                                Spacer()
 
                                 PdfButton(imageSystemName: "ellipsis.rectangle", isActive: areControlsShown) {
                                     withAnimation {
@@ -124,7 +134,7 @@ struct ContentView: View {
                                     }
                                 }
                             }
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(maxWidth: .infinity, alignment: .center)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     }

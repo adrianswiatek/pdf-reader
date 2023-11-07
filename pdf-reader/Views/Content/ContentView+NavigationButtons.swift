@@ -1,10 +1,9 @@
 import SwiftUI
 
 extension ContentView {
-    struct PdfButtonsView: View {
+    struct NavigationButtonsView: View {
         @Environment(PageListener.self) private var pageListener: PageListener
 
-        @Binding private var isPageNumberAlertShown: Bool
         @Binding private var isOutlineShown: Bool
         @Binding private var areButtonsShown: Bool
 
@@ -13,12 +12,10 @@ extension ContentView {
         init(
             pdfKitView: PdfKitView,
             isOutlineShown: Binding<Bool>,
-            isPageNumberAlertShown: Binding<Bool>,
             areButtonsShown: Binding<Bool>
         ) {
             self.pdfKitView = pdfKitView
             self._isOutlineShown = isOutlineShown
-            self._isPageNumberAlertShown = isPageNumberAlertShown
             self._areButtonsShown = areButtonsShown
         }
 
@@ -53,11 +50,6 @@ extension ContentView {
                                 pdfKitView.goTo(.page(anotherPage.asPdfPage))
                             }
                         }
-
-                        PdfButton(imageSystemName: "number") {
-                            isPageNumberAlertShown.toggle()
-                        }
-                        .padding(.horizontal)
                     }
                 }
             }
