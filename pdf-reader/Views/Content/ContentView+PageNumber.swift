@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension ContentView {
-    struct PageNumber: View {
+    struct PageNumberView: View {
         @Environment(PageListener.self)
         private var pageListener: PageListener
 

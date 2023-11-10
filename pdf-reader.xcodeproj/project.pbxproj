@@ -39,6 +39,8 @@
 		E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */; };
 		E8EAD5A52AF684D300E28829 /* IndexSetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EAD5A42AF684D300E28829 /* IndexSetExtensions.swift */; };
 		E8EAD5A72AF68BA000E28829 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EAD5A62AF68BA000E28829 /* CollectionExtensions.swift */; };
+		E8EC5F9C2AFE618400C2BD44 /* ContentView+CloseAndSwitchButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC5F9B2AFE618400C2BD44 /* ContentView+CloseAndSwitchButtons.swift */; };
+		E8EC5F9E2AFE6F0C00C2BD44 /* ContentView+ContentButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC5F9D2AFE6F0C00C2BD44 /* ContentView+ContentButtons.swift */; };
 		E8F06E9C2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		E8CB400F2AABA7F3000B10BA /* ContentView+PdfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PdfButton.swift"; sourceTree = "<group>"; };
 		E8EAD5A42AF684D300E28829 /* IndexSetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSetExtensions.swift; sourceTree = "<group>"; };
 		E8EAD5A62AF68BA000E28829 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
+		E8EC5F9B2AFE618400C2BD44 /* ContentView+CloseAndSwitchButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+CloseAndSwitchButtons.swift"; sourceTree = "<group>"; };
+		E8EC5F9D2AFE6F0C00C2BD44 /* ContentView+ContentButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+ContentButtons.swift"; sourceTree = "<group>"; };
 		E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+NoContent+BaseButtonStyle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */,
+				E8EC5F9B2AFE618400C2BD44 /* ContentView+CloseAndSwitchButtons.swift */,
+				E8EC5F9D2AFE6F0C00C2BD44 /* ContentView+ContentButtons.swift */,
 				E81840252AAFB9BA00F997B0 /* ContentView+NavigationButtons.swift */,
 				E82DE4442AF34E27009EDCEC /* ContentView+NoContent.swift */,
 				E8F06E9B2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift */,
@@ -294,6 +300,7 @@
 				E87F946B2ABA0660004045B1 /* UnderlinedText.swift in Sources */,
 				E857C9852AB910DD000BE4E0 /* ArrayExtensions.swift in Sources */,
 				E86573A32AC7186E00A9C8C0 /* OptionalExtensions.swift in Sources */,
+				E8EC5F9E2AFE6F0C00C2BD44 /* ContentView+ContentButtons.swift in Sources */,
 				E8CB3FFD2AAA4A4A000B10BA /* ContentView.swift in Sources */,
 				E80364172AE76E28002EF72B /* BookProgressStore.swift in Sources */,
 				E81EFCA32ABCEB3F00D75085 /* PageListener.swift in Sources */,
@@ -303,6 +310,7 @@
 				E8F06E9C2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift in Sources */,
 				E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */,
 				E85F246A2AAE65560041BF1B /* Outline.swift in Sources */,
+				E8EC5F9C2AFE618400C2BD44 /* ContentView+CloseAndSwitchButtons.swift in Sources */,
 				E81EFCAD2ABD021500D75085 /* PdfKitView+Destination.swift in Sources */,
 				E86573A12AC717DC00A9C8C0 /* UrlExtensions.swift in Sources */,
 				E8CB40092AAA5B41000B10BA /* PdfKitView.swift in Sources */,

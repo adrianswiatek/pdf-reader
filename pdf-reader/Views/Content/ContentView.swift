@@ -1,8 +1,9 @@
+import Combine
 import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(PageListener.self) 
+    @Environment(PageListener.self)
     private var pageListener: PageListener
 
     @Environment(BookProgressStore.self)
@@ -17,7 +18,10 @@ struct ContentView: View {
     @State private var isHistoryShown = false
     @State private var isOutlineShown = false
     @State private var isPageNumberAlertShown = false
+    @State private var shouldShowPageNumber = false
     @State private var pdfKitView = PdfKitView()
+
+    @State private var timer = makeTimerPublisher(withInterval: 0)
 
     private var outlineView: OutlineView {
         OutlineView(
@@ -27,43 +31,23 @@ struct ContentView: View {
         )
     }
 
-    private var goToPageButtonView: PdfButton {
-        PdfButton(imageSystemName: "number") {
-            isPageNumberAlertShown.toggle()
-        }
-    }
-
-    private var pdfNavigationButtonsView: NavigationButtonsView {
-        NavigationButtonsView(
-            pdfKitView: pdfKitView,
-            isOutlineShown: $isOutlineShown,
-            areButtonsShown: $areControlsShown
-        )
-    }
-
-    private var closeAndSwitchButtonsView: some View {
-        VStack(spacing: 16) {
-            PdfButton(imageSystemName: "xmark") {
-                withAnimation {
-                    pdfKitView.closeDocument()
-                    areControlsShown.toggle()
-                    pageListener.clearState()
-                }
-            }
-
-            PdfButton(imageSystemName: "arrow.triangle.2.circlepath", size: .small) {
-                isFilePickerShown.toggle()
-                areControlsShown.toggle()
-                pageListener.clearState()
-            }
-        }
-    }
-
     private var statusBarBackground: some View {
         Rectangle()
             .fill(.background.opacity(0.8))
             .frame(height: 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    }
+
+    private var contentButtonsView: some View {
+        ContentButtonsView(
+            canShowOutlineButton: canShowOutlineButton,
+            areControlsShown: $areControlsShown,
+            isFilePickerShown: $isFilePickerShown,
+            isOutlineShown: $isOutlineShown,
+            isPageNumberAlertShown: $isPageNumberAlertShown,
+            shouldShowPageNumber: $shouldShowPageNumber,
+            pdfKitView: $pdfKitView
+        )
     }
 
     private var canShowOutline: Bool {
@@ -93,53 +77,9 @@ struct ContentView: View {
                 }
 
                 if canShowButtons {
-                    VStack {
-                        if areControlsShown {
-                            HStack {
-                                PageNumber()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-
-                                closeAndSwitchButtonsView
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                            }
-
-                            Spacer()
-                        }
-
-                        VStack(spacing: 16) {
-                            if canShowOutlineButton {
-                                PdfButton(imageSystemName: "list.number", isActive: isOutlineShown) {
-                                    withAnimation {
-                                        isOutlineShown.toggle()
-                                        areControlsShown.toggle()
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                            }
-
-                            HStack(spacing: 16) {
-                                if areControlsShown {
-                                    goToPageButtonView
-
-                                    Spacer()
-
-                                    pdfNavigationButtonsView
-                                }
-
-                                Spacer()
-
-                                PdfButton(imageSystemName: "ellipsis.rectangle", isActive: areControlsShown) {
-                                    withAnimation {
-                                        areControlsShown.toggle()
-                                    }
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 16)
+                    contentButtonsView
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 16)
                 }
             } else {
                 NoContentView($isFilePickerShown, $isHistoryShown)
@@ -159,15 +99,39 @@ struct ContentView: View {
         .sheet(isPresented: $isHistoryShown) {
             HistoryView()
         }
-        .onChange(of: pdfKitView.isPdfLoaded) {
-            canShowPdfContent = $1
-        }
         .onAppear {
             bookProgressStore.modelContext = modelContext
             pdfKitView.bookProgressStore = bookProgressStore
         }
+        .onChange(of: pdfKitView.isPdfLoaded) {
+            canShowPdfContent = $1
+        }
+        .onChange(of: pageListener.currentPage) {
+            timer = ContentView.makeTimerPublisher(withInterval: 2.5)
+            withAnimation {
+                shouldShowPageNumber = true
+            }
+        }
+        .onChange(of: areControlsShown) {
+            if !$1 {
+                withAnimation {
+                    shouldShowPageNumber = false
+                }
+            }
+        }
+        .onReceive(timer, perform: { _ in
+            withAnimation {
+                shouldShowPageNumber = false
+            }
+        })
         .onOpenURL {
             pdfKitView.loadDocumentWithUrl($0)
         }
+    }
+
+    private static func makeTimerPublisher(
+        withInterval seconds: Double
+    ) -> Publishers.Autoconnect<Timer.TimerPublisher> {
+        Timer.publish(every: seconds, on: .main, in: .common).autoconnect()
     }
 }
