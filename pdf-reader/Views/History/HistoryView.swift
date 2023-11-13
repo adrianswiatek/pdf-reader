@@ -8,7 +8,7 @@ struct HistoryView: View {
     @Environment(\.dismiss)
     private var dismiss: DismissAction
 
-    @AppStorage("sortingOption")
+    @AppStorage(StorageKey.sortingOption)
     private var sortingOption: SortingOption = .name
 
     @Query

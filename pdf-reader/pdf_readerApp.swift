@@ -3,6 +3,9 @@ import SwiftUI
 
 @main
 struct pdf_readerApp: App {
+    @AppStorage(StorageKey.theme)
+    private var colorTheme: Settings.Theme = .auto
+
     private let pageListener: PageListener
     private let bookProgressStore: BookProgressStore
 
@@ -16,6 +19,7 @@ struct pdf_readerApp: App {
             ContentView()
                 .environment(pageListener)
                 .environment(bookProgressStore)
+                .preferredColorScheme(colorTheme.toColorScheme())
         }
         .modelContainer(for: [BookProgress.self])
     }

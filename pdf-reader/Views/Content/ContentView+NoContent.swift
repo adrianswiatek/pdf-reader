@@ -3,22 +3,20 @@ import SwiftUI
 
 extension ContentView {
     struct NoContentView: View {
-        @Query
-        private var bookProgresses: [BookProgress]
+        @Query private var bookProgresses: [BookProgress]
 
-        @Binding
-        private var isFilePickerShown: Bool
+        @Binding private var areSettingsShown: Bool
+        @Binding private var isFilePickerShown: Bool
+        @Binding private var isHistoryShown: Bool
 
-        @Binding
-        private var isHistoryShown: Bool
-
-        @State
-        private var canShowHistory: Bool
+        @State private var canShowHistory: Bool
 
         init(
+            _ areSettingsShown: Binding<Bool>,
             _ isFilePickerShown: Binding<Bool>,
             _ isHistoryShown: Binding<Bool>
         ) {
+            self._areSettingsShown = areSettingsShown
             self._isFilePickerShown = isFilePickerShown
             self._isHistoryShown = isHistoryShown
             self._canShowHistory = State(wrappedValue: false)
@@ -62,11 +60,25 @@ extension ContentView {
                             Text("History")
                                 .font(.title3)
                         }
-                        .padding(.trailing)
                         .padding(.vertical)
                     }
                     .disabled(!canShowHistory)
                     .buttonStyle(BaseButtonStyle(isActive: canShowHistory))
+
+                    Button {
+                        areSettingsShown.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "gearshape")
+                                .font(.largeTitle)
+
+                            Text("Settings")
+                                .font(.title3)
+                        }
+                        .padding(.trailing)
+                        .padding(.vertical)
+                    }
+                    .buttonStyle(BaseButtonStyle())
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 4)

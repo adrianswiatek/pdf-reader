@@ -30,6 +30,11 @@
 		E8875DF32ABE562E00EEB0E4 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8875DF22ABE562E00EEB0E4 /* ColorExtensions.swift */; };
 		E8875DF52ABE5F4B00EEB0E4 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8875DF42ABE5F4B00EEB0E4 /* Page.swift */; };
 		E88E793E2ABE4334008FAE49 /* ContentView+PageNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E793D2ABE4334008FAE49 /* ContentView+PageNumber.swift */; };
+		E8B1D41D2B02AC640096460A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1D41C2B02AC640096460A /* SettingsView.swift */; };
+		E8B1D41F2B02BDFD0096460A /* ColorSchemeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1D41E2B02BDFD0096460A /* ColorSchemeExtensions.swift */; };
+		E8B1D4212B02C7840096460A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1D4202B02C7840096460A /* Settings.swift */; };
+		E8B1D4232B02C84E0096460A /* ThemeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1D4222B02C84E0096460A /* ThemeExtensions.swift */; };
+		E8B1D4252B02C9630096460A /* StorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1D4242B02C9630096460A /* StorageKey.swift */; };
 		E8CB3FFB2AAA4A4A000B10BA /* pdf_readerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB3FFA2AAA4A4A000B10BA /* pdf_readerApp.swift */; };
 		E8CB3FFD2AAA4A4A000B10BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */; };
 		E8CB3FFF2AAA4A4B000B10BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8CB3FFE2AAA4A4B000B10BA /* Assets.xcassets */; };
@@ -69,6 +74,11 @@
 		E8875DF22ABE562E00EEB0E4 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		E8875DF42ABE5F4B00EEB0E4 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		E88E793D2ABE4334008FAE49 /* ContentView+PageNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+PageNumber.swift"; sourceTree = "<group>"; };
+		E8B1D41C2B02AC640096460A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E8B1D41E2B02BDFD0096460A /* ColorSchemeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeExtensions.swift; sourceTree = "<group>"; };
+		E8B1D4202B02C7840096460A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		E8B1D4222B02C84E0096460A /* ThemeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtensions.swift; sourceTree = "<group>"; };
+		E8B1D4242B02C9630096460A /* StorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKey.swift; sourceTree = "<group>"; };
 		E8CB3FF72AAA4A4A000B10BA /* pdf-reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pdf-reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CB3FFA2AAA4A4A000B10BA /* pdf_readerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdf_readerApp.swift; sourceTree = "<group>"; };
 		E8CB3FFC2AAA4A4A000B10BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,11 +161,13 @@
 			isa = PBXGroup;
 			children = (
 				E857C9842AB910DD000BE4E0 /* ArrayExtensions.swift */,
+				E8EAD5A62AF68BA000E28829 /* CollectionExtensions.swift */,
 				E8875DF22ABE562E00EEB0E4 /* ColorExtensions.swift */,
+				E8B1D41E2B02BDFD0096460A /* ColorSchemeExtensions.swift */,
 				E8EAD5A42AF684D300E28829 /* IndexSetExtensions.swift */,
 				E86573A22AC7186E00A9C8C0 /* OptionalExtensions.swift */,
 				E86573A02AC717DC00A9C8C0 /* UrlExtensions.swift */,
-				E8EAD5A62AF68BA000E28829 /* CollectionExtensions.swift */,
+				E8B1D4222B02C84E0096460A /* ThemeExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,9 +182,19 @@
 				E8292B3D2AB78F1A00AE9C31 /* Outline+Node.swift */,
 				E8875DF42ABE5F4B00EEB0E4 /* Page.swift */,
 				E81EFCA22ABCEB3F00D75085 /* PageListener.swift */,
+				E8B1D4202B02C7840096460A /* Settings.swift */,
+				E8B1D4242B02C9630096460A /* StorageKey.swift */,
 				E87F946A2ABA0660004045B1 /* UnderlinedText.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E8B1D41B2B02AC530096460A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E8B1D41C2B02AC640096460A /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		E8CB3FEE2AAA4A4A000B10BA = {
@@ -222,6 +244,7 @@
 				E82DE4462AF35DFE009EDCEC /* History */,
 				E81840212AAF723300F997B0 /* Outline */,
 				E81EFCAE2ABD022300D75085 /* PdfKit */,
+				E8B1D41B2B02AC530096460A /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,8 +324,12 @@
 				E857C9852AB910DD000BE4E0 /* ArrayExtensions.swift in Sources */,
 				E86573A32AC7186E00A9C8C0 /* OptionalExtensions.swift in Sources */,
 				E8EC5F9E2AFE6F0C00C2BD44 /* ContentView+ContentButtons.swift in Sources */,
+				E8B1D41D2B02AC640096460A /* SettingsView.swift in Sources */,
+				E8B1D4212B02C7840096460A /* Settings.swift in Sources */,
+				E8B1D4252B02C9630096460A /* StorageKey.swift in Sources */,
 				E8CB3FFD2AAA4A4A000B10BA /* ContentView.swift in Sources */,
 				E80364172AE76E28002EF72B /* BookProgressStore.swift in Sources */,
+				E8B1D41F2B02BDFD0096460A /* ColorSchemeExtensions.swift in Sources */,
 				E81EFCA32ABCEB3F00D75085 /* PageListener.swift in Sources */,
 				E81840242AAF8E5300F997B0 /* ContentView+PageNumberAlert.swift in Sources */,
 				E818401E2AAF6F8700F997B0 /* OutlineView+RowsView.swift in Sources */,
@@ -310,6 +337,7 @@
 				E8F06E9C2AF39EBC00E69D4E /* ContentView+NoContent+BaseButtonStyle.swift in Sources */,
 				E8CB40102AABA7F3000B10BA /* ContentView+PdfButton.swift in Sources */,
 				E85F246A2AAE65560041BF1B /* Outline.swift in Sources */,
+				E8B1D4232B02C84E0096460A /* ThemeExtensions.swift in Sources */,
 				E8EC5F9C2AFE618400C2BD44 /* ContentView+CloseAndSwitchButtons.swift in Sources */,
 				E81EFCAD2ABD021500D75085 /* PdfKitView+Destination.swift in Sources */,
 				E86573A12AC717DC00A9C8C0 /* UrlExtensions.swift in Sources */,

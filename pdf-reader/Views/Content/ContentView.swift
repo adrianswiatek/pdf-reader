@@ -13,6 +13,7 @@ struct ContentView: View {
     private var modelContext: ModelContext
 
     @State private var areControlsShown = false
+    @State private var areSettingsShown = false
     @State private var canShowPdfContent = false
     @State private var isFilePickerShown = false
     @State private var isHistoryShown = false
@@ -82,7 +83,7 @@ struct ContentView: View {
                         .padding(.vertical, 16)
                 }
             } else {
-                NoContentView($isFilePickerShown, $isHistoryShown)
+                NoContentView($areSettingsShown, $isFilePickerShown, $isHistoryShown)
             }
         }
         .fileImporter(isPresented: $isFilePickerShown, allowedContentTypes: [.pdf]) {
@@ -99,6 +100,9 @@ struct ContentView: View {
         .sheet(isPresented: $isHistoryShown) {
             HistoryView()
         }
+        .sheet(isPresented: $areSettingsShown) {
+            SettingsView()
+        }
         .onAppear {
             bookProgressStore.modelContext = modelContext
             pdfKitView.bookProgressStore = bookProgressStore
@@ -107,10 +111,10 @@ struct ContentView: View {
             canShowPdfContent = $1
         }
         .onChange(of: pageListener.currentPage) {
-            timer = ContentView.makeTimerPublisher(withInterval: 2.5)
             withAnimation {
                 shouldShowPageNumber = true
             }
+            timer = ContentView.makeTimerPublisher(withInterval: 2.5)
         }
         .onChange(of: areControlsShown) {
             if !$1 {
