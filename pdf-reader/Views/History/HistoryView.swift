@@ -98,7 +98,7 @@ struct HistoryView: View {
 
     private func areInIncreasingOrder(lhs: BookProgress, rhs: BookProgress) -> Bool {
         switch sortingOption {
-        case .lastUpdate: 
+        case .lastUpdate:
             lhs.dateOfUpdate > rhs.dateOfUpdate
         case .name:
             lhs.title < rhs.title

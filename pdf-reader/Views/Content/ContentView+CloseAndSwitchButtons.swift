@@ -5,13 +5,13 @@ extension ContentView {
         @Environment(PageListener.self)
         private var pageListener: PageListener
 
-        @Binding 
+        @Binding
         private var areControlsShown: Bool
 
-        @Binding 
+        @Binding
         private var isFilePickerShown: Bool
 
-        @Binding 
+        @Binding
         private var pdfKitView: PdfKitView
 
         init(

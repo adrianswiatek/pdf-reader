@@ -9,7 +9,7 @@ struct ContentView: View {
     @Environment(BookProgressStore.self)
     private var bookProgressStore: BookProgressStore
 
-    @Environment(\.modelContext) 
+    @Environment(\.modelContext)
     private var modelContext: ModelContext
 
     @State private var areControlsShown = false
