@@ -3,6 +3,9 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme)
+    private var colorScheme: ColorScheme
+
     @Environment(PageListener.self)
     private var pageListener: PageListener
 
@@ -102,6 +105,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $areSettingsShown) {
             SettingsView()
+                .preferredColorScheme(colorScheme)
         }
         .onAppear {
             bookProgressStore.modelContext = modelContext

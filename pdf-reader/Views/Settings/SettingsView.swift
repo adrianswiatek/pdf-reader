@@ -5,12 +5,12 @@ struct SettingsView: View {
     private var dismiss: DismissAction
 
     @AppStorage(StorageKey.theme)
-    private var theme: Settings.Theme = .auto
+    private var colorTheme: Settings.Theme = .auto
 
     var body: some View {
         NavigationStack {
             Form {
-                Picker("Theme", selection: $theme) {
+                Picker("Theme", selection: $colorTheme) {
                     themeText(.auto)
                     themeText(.dark)
                     themeText(.light)
@@ -29,7 +29,6 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .preferredColorScheme(theme.toColorScheme())
     }
 
     private func themeText(_ theme: Settings.Theme) -> some View {
