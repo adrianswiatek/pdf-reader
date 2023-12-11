@@ -166,8 +166,8 @@
 				E8B1D41E2B02BDFD0096460A /* ColorSchemeExtensions.swift */,
 				E8EAD5A42AF684D300E28829 /* IndexSetExtensions.swift */,
 				E86573A22AC7186E00A9C8C0 /* OptionalExtensions.swift */,
-				E86573A02AC717DC00A9C8C0 /* UrlExtensions.swift */,
 				E8B1D4222B02C84E0096460A /* ThemeExtensions.swift */,
+				E86573A02AC717DC00A9C8C0 /* UrlExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,13 +217,13 @@
 			isa = PBXGroup;
 			children = (
 				E8828F2F2AF80B9100B0A5CD /* Info.plist */,
+				E86573A42AC719C000A9C8C0 /* GeneralUseFunctons.swift */,
 				E8CB3FFA2AAA4A4A000B10BA /* pdf_readerApp.swift */,
 				E8CB3FFE2AAA4A4B000B10BA /* Assets.xcassets */,
 				E857C9832AB910D0000BE4E0 /* Extensions */,
 				E85F24682AAE654D0041BF1B /* Model */,
 				E8CB40002AAA4A4B000B10BA /* Preview Content */,
 				E8CB400C2AAA663E000B10BA /* Views */,
-				E86573A42AC719C000A9C8C0 /* GeneralUseFunctons.swift */,
 			);
 			path = "pdf-reader";
 			sourceTree = "<group>";
