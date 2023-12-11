@@ -31,7 +31,7 @@ extension OutlineView {
             RowView(
                 node: node,
                 level: level,
-                isCurrent: currentNode == node,
+                isCurrent: currentNode?.id == node.id,
                 selectedNode: $selectedNode
             )
         }

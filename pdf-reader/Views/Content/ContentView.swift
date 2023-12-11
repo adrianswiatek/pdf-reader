@@ -27,14 +27,6 @@ struct ContentView: View {
 
     @State private var timer = makeTimerPublisher(withInterval: 0)
 
-    private var outlineView: OutlineView {
-        OutlineView(
-            outline: pdfKitView.outline.withCurrentPage(pageListener.currentPage),
-            isShown: $isOutlineShown,
-            onPageSelected: pdfKitView.goTo
-        )
-    }
-
     private var statusBarBackground: some View {
         Rectangle()
             .fill(.background.opacity(0.8))
@@ -76,10 +68,6 @@ struct ContentView: View {
                 statusBarBackground
                     .ignoresSafeArea()
 
-                if canShowOutline {
-                    outlineView
-                }
-
                 if canShowButtons {
                     contentButtonsView
                         .padding(.horizontal, 24)
@@ -107,21 +95,30 @@ struct ContentView: View {
             SettingsView()
                 .preferredColorScheme(colorScheme)
         }
+        .fullScreenCover(isPresented: $isOutlineShown) {
+            OutlineView(
+                outline: pdfKitView.outline.withCurrentPage(pageListener.currentPage),
+                isShown: $isOutlineShown,
+                onPageSelected: pdfKitView.goTo
+            )
+        }
         .onAppear {
             bookProgressStore.modelContext = modelContext
             pdfKitView.bookProgressStore = bookProgressStore
         }
-        .onChange(of: pdfKitView.isPdfLoaded) {
-            canShowPdfContent = $1
+        .onChange(of: pdfKitView.isPdfLoaded) { _, isPdfLoaded in
+            withAnimation(.easeIn) {
+                canShowPdfContent = isPdfLoaded
+            }
         }
         .onChange(of: pageListener.currentPage) {
             withAnimation {
                 shouldShowPageNumber = true
             }
-            timer = ContentView.makeTimerPublisher(withInterval: 2.5)
+            timer = ContentView.makeTimerPublisher(withInterval: 2)
         }
-        .onChange(of: areControlsShown) {
-            if !$1 {
+        .onChange(of: areControlsShown) { _, areControlsShown in
+            if !areControlsShown {
                 withAnimation {
                     shouldShowPageNumber = false
                 }

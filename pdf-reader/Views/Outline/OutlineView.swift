@@ -36,11 +36,9 @@ struct OutlineView: View {
                             .listRowBackground(Color(uiColor: .systemBackground))
                     }
                     .listStyle(.automatic)
-                    .onChange(of: outline.currentNode) { _, currentNode in
-                        if let currentNode {
-                            withAnimation {
-                                proxy.scrollTo(currentNode, anchor: .center)
-                            }
+                    .onAppear {
+                        if let node = outline.currentNode {
+                            proxy.scrollTo(node, anchor: .center)
                         }
                     }
                 }
@@ -68,6 +66,10 @@ struct OutlineView: View {
     }
 
     private var rowsView: RowsView {
-        RowsView(nodes: nodes, currentNode: outline.currentNode, selectedNode: $selectedNode)
+        RowsView(
+            nodes: nodes,
+            currentNode: outline.currentNode,
+            selectedNode: $selectedNode
+        )
     }
 }

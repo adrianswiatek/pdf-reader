@@ -16,7 +16,7 @@ extension OutlineView {
         private let isCurrent: Bool
 
         private var backgroundColorForText: Color {
-            isCurrent ? Color(uiColor: .systemOrange).opacity(0.33) : .clear
+            isCurrent ? Color(uiColor: .systemPurple).opacity(0.33) : .clear
         }
 
         private var backgroundColorForFoundText: Color {
@@ -53,6 +53,7 @@ extension OutlineView {
                 Text(node.label.underlinedText().underlined)
                     .font(.system(size: 18 - level * 1.5))
                     .fontWeight(fontWeightForLevel(Int(level)))
+                    .padding(.vertical, 2)
                     .background(backgroundColorForFoundText)
 
                 Text(node.label.underlinedText().postunderlined)
