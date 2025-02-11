@@ -5,7 +5,7 @@ import SwiftUI
 struct PdfKitView: UIViewRepresentable {
     var bookProgressStore: BookProgressStore?
 
-    private (set) var isPdfLoaded: Bool = false
+    private(set) var isPdfLoaded: Bool = false
 
     var outline: Outline {
         pdfView.document.flatMap(Outline.makeFromDocument) ?? .empty

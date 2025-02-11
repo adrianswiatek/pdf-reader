@@ -86,7 +86,8 @@ extension ContentView {
                     .fill(Color(uiColor: .secondarySystemBackground))
                     .shadow(radius: 1)
                 )
-                .padding(32)
+                .padding(.top, 64)
+                .frame(maxHeight: 128)
             }
             .background(Color(uiColor: .systemBackground).gradient)
             .onChange(of: bookProgresses, { _, _ in setCanShowHistory() })

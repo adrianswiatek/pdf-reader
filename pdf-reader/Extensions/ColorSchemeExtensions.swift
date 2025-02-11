@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension ColorScheme: RawRepresentable {
+extension ColorScheme: @retroactive RawRepresentable {
     public init?(rawValue: String) {
         self = rawValue == "dark" ? .dark : .light
     }
